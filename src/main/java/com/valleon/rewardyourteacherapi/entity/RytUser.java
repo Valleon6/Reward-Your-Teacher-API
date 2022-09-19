@@ -2,6 +2,7 @@ package com.valleon.rewardyourteacherapi.entity;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import org.springframework.stereotype.Indexed;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,11 +15,15 @@ import javax.validation.constraints.NotBlank;
 public class RytUser {
 
 
-    //    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
+//        @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
 //    @GeneratedValue(generator = "user_sequence", strategy = GenerationType.SEQUENCE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long RytUserId;
 
     @NotBlank
     @Column(name = "first_name", nullable = false)
@@ -30,6 +35,7 @@ public class RytUser {
 
     @NotBlank
     @Email
+//    @Index(unique = true)
     @Column(name = "email", nullable = false)
     private String email;
 
