@@ -11,8 +11,7 @@ public interface RytUserRepository extends JpaRepository<RytUser, Long>{
 
     @Override
     Optional<RytUser> findById(Long userId);
-//    @Query("" +
-//            "SELECT CASE WHEN COUNT(s) > 0 THEN " + "TRUE ELSE FALSE END " + "FROM User s " + "WHERE s.email = ?1"
-//    )
-//    Boolean selectExistsEmail(String email);
+
+//    Optional<RytUser> findRytUsersByLastName(String lastName);
+
 }

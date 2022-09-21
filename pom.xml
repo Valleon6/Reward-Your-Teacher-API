@@ -58,7 +58,35 @@
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
         </dependency>
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-jdbc &ndash;&gt;-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.auth0/java-jwt &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.auth0</groupId>-->
+<!--            <artifactId>java-jwt</artifactId>-->
+<!--            <version>3.19.2</version>-->
+<!--        </dependency>-->
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-jdbc &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework</groupId>-->
 <!--            <artifactId>spring-jdbc</artifactId>-->
@@ -70,7 +98,10 @@
 <!--            <artifactId>hibernate-core</artifactId>-->
 <!--            <version>5.6.10.Final</version>-->
 <!--        </dependency>-->
-
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
 
 
     </dependencies>
