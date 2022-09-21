@@ -1,22 +1,26 @@
 package com.valleon.rewardyourteacherapi.controller;
 
 import com.valleon.rewardyourteacherapi.entity.RytUser;
-import com.valleon.rewardyourteacherapi.service.RytUserServiceImpl;
+import com.valleon.rewardyourteacherapi.pojos.APIResponse;
+import com.valleon.rewardyourteacherapi.service.RytUserService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/rytusers")
+@RequestMapping("api/ryt")
 @AllArgsConstructor
 public class RytUserController {
-    private final RytUserServiceImpl rytUserServiceImpl;
+    private final RytUserService rytUserService;
 
+    @PostMapping("/signup")
+    public ResponseEntity<APIResponse> signUpRytUser(@RequestBody RytUser request) {
+        return rytUserService.createUser(request);
 
-    @PostMapping("/registeruser")
-    public ResponseEntity<RytUser> registerUser(@RequestBody RytUser rytUser) {
-        return new ResponseEntity<RytUser>(rytUserServiceImpl.registerRytUser(rytUser), HttpStatus.CREATED);
+    }
+    @GetMapping("/users")
+    public APIResponse getUsers(){
+        return null;
     }
 
 //    @GetMapping("/users")
