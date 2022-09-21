@@ -19,23 +19,15 @@ public class UserController {
         return rytUserService.createUser(request);
 
     }
+    @GetMapping("/users")
+    public ResponseEntity<APIResponse>  getRytUser(){
+        return rytUserService.getRytUsers();
+    }
 
 
-
-//        return new ResponseEntity<RytUser>(rytUserService.registerRytUser(rytUser), HttpStatus.CREATED);
-
-
-//    @GetMapping("/users")
-//    public List<RytUser> getAllUsers(){
-//        return rytUserServiceImpl.getAllUsers();
-//    }
-
-//
-//
 //    @DeleteMapping(path = "{userID}")
 //    public void deleteUser(@PathVariable ("userID") Long userID){
 ////        return userService.deleteUser();
-//
 //    }
 
 }

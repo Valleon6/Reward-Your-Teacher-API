@@ -18,11 +18,13 @@ public class Responder <T>{
     public ResponseEntity<APIResponse> notFound(){
         return new ResponseEntity<>(new APIResponse
                 ("Request not found", false, null), HttpStatus.NOT_FOUND);
-
     }
 
     public ResponseEntity<APIResponse> alreadyExist(String message){
         return new ResponseEntity<>(new APIResponse
                 (message, true,  null), HttpStatus.CONFLICT);
+    }
+    public ResponseEntity<APIResponse> UnAuthorize(String message){
+        return  new ResponseEntity<>(new APIResponse(message, true, null), HttpStatus.UNAUTHORIZED);
     }
 }

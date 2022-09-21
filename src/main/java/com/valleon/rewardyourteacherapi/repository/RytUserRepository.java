@@ -9,9 +9,10 @@ import java.util.Optional;
 @Repository
 public interface RytUserRepository extends JpaRepository<RytUser, Long>{
 
-    @Override
-    Optional<RytUser> findById(Long userId);
+    Optional<RytUser> findByUsername(String username);
 
+//    @Override
+//    Optional<RytUser> findById(Long userId);
 //    Optional<RytUser> findRytUsersByLastName(String lastName);
 
 }

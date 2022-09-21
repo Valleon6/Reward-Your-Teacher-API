@@ -1,9 +1,6 @@
 package com.valleon.rewardyourteacherapi.entity;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
-import org.springframework.stereotype.Indexed;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -35,13 +32,18 @@ public class RytUser {
 
     @NotBlank
     @Email
-//    @Index(unique = true)
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-//    @Column
-//    private String school;
-//
+    @NotBlank
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
+
+    private String password;
+
+    @Column(name = "school", nullable = false)
+    private String school;
+
 //    @Enumerated(EnumType.STRING)
 //    @NotNull
 //    private RytUserRole gender;
