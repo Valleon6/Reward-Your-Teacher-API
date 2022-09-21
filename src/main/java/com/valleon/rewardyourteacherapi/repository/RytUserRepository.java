@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RytUserRepository extends JpaRepository<RytUser, Long>{
+public interface RytUserRepository extends JpaRepository<RytUser, String> {
 
-    @Override
+    //    @Override
     Optional<RytUser> findById(Long userId);
-//    @Query("" +
+    Optional<RytUser> findByEmail(String email);
+    //    @Query("" +
 //            "SELECT CASE WHEN COUNT(s) > 0 THEN " + "TRUE ELSE FALSE END " + "FROM User s " + "WHERE s.email = ?1"
 //    )
 //    Boolean selectExistsEmail(String email);
