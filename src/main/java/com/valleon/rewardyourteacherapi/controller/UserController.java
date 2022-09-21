@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/ryt")
 @AllArgsConstructor
-public class RytUserController {
+public class UserController {
     private final RytUserService rytUserService;
+
 
     @PostMapping("/signup")
     public ResponseEntity<APIResponse> signUpRytUser(@RequestBody RytUser request) {
@@ -19,21 +20,14 @@ public class RytUserController {
 
     }
     @GetMapping("/users")
-    public APIResponse getUsers(){
-        return null;
+    public ResponseEntity<APIResponse>  getRytUser(){
+        return rytUserService.getRytUsers();
     }
 
-//    @GetMapping("/users")
-//    public List<RytUser> getAllUsers(){
-//        return rytUserServiceImpl.getAllUsers();
-//    }
 
-//
-//
 //    @DeleteMapping(path = "{userID}")
 //    public void deleteUser(@PathVariable ("userID") Long userID){
 ////        return userService.deleteUser();
-//
 //    }
 
 }
