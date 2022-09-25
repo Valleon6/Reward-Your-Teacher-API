@@ -1,6 +1,6 @@
-package com.valleon.rewardyourteacherapi.controller;
+package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
-import com.valleon.rewardyourteacherapi.entity.RytUser;
+import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.pojos.APIResponse;
 import com.valleon.rewardyourteacherapi.service.RytUserService;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ public class UserController {
 
 
     @PostMapping("/signup")
-    public ResponseEntity<APIResponse> signUpRytUser(@RequestBody RytUser request) {
+    public ResponseEntity<APIResponse> signUpRytUser(@RequestBody AppUser request) {
         return rytUserService.createUser(request);
 
     }

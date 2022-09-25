@@ -1,7 +1,7 @@
-package com.valleon.rewardyourteacherapi.security;
+package com.valleon.rewardyourteacherapi.infrastructure.configuration.security;
 
-import com.valleon.rewardyourteacherapi.entity.RytUser;
-import com.valleon.rewardyourteacherapi.repository.RytUserRepository;
+import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
+import com.valleon.rewardyourteacherapi.persistence.repository.RytUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,8 +18,8 @@ public class AuthUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        RytUser rytUser = rytUserRepository.findByUsername(username).orElse(null);
-        return new org.springframework.security.core.userdetails.User(rytUser.getUsername(),rytUser.getPassword(), new ArrayList<>());
+        AppUser appUser = rytUserRepository.findByUsername(username).orElse(null);
+        return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), new ArrayList<>());
 
     }
 }

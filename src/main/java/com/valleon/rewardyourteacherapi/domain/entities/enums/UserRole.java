@@ -1,4 +1,7 @@
 package com.valleon.rewardyourteacherapi.domain.entities.enums;
 
-public enum UserPosition {
+public enum UserRole {
+    TEACHER,
+    STUDENT,
+    OTHER
 }

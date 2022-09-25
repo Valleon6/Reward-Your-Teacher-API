@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.security;
+package com.valleon.rewardyourteacherapi.infrastructure.configuration.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;

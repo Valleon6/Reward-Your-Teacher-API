@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.entity;
+package com.valleon.rewardyourteacherapi.domain.entities;
 
 import lombok.Data;
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Data
 @Table(name = "rytusers")
-public class RytUser {
+public class AppUser {
 
 
 //        @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
@@ -46,7 +46,7 @@ public class RytUser {
 
 //    @Enumerated(EnumType.STRING)
 //    @NotNull
-//    private RytUserRole gender;
+//    private UserRole gender;
 
 
 }
