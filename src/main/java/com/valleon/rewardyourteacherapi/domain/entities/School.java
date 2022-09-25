@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Getter @Setter @Entity @Builder
 @NoArgsConstructor @AllArgsConstructor
 @Table(name= "School")
-public class School {
+public class School extends AbstractEntity{
 
     @Column(name = "School ID", unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
     private Integer schoolId;

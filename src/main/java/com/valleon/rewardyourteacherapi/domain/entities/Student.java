@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Getter @Setter @Builder @Entity
 @NoArgsConstructor @AllArgsConstructor
 @Table(name = "students")
-public class Student {
+public class Student extends AbstractEntity {
 
     @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
     private String name;
@@ -21,13 +21,13 @@ public class Student {
     @Column(unique = true, nullable = false )
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name="")
-    private School school;
-
-
-    private Teacher teacher;
-
-    private AppUser appUser;
+//    @ManyToOne
+//    @JoinColumn(name="")
+//    private School school;
+//
+//
+//    private Teacher teacher;
+//
+//    private AppUser appUser;
 
 }

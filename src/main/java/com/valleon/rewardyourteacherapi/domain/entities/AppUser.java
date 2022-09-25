@@ -1,52 +1,44 @@
 package com.valleon.rewardyourteacherapi.domain.entities;
 
-import lombok.Data;
+import com.valleon.rewardyourteacherapi.domain.entities.enums.Role;
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 //@AllArgsConstructor
-@Entity
-@Data
-@Table(name = "rytusers")
-public class AppUser {
+@Entity @Getter @Setter @Builder
+@NoArgsConstructor @AllArgsConstructor
+@Table(name = "RYT App Users")
+public class AppUser extends AbstractEntity{
 
-
-//        @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
-//    @GeneratedValue(generator = "user_sequence", strategy = GenerationType.SEQUENCE)
-    @Id()
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long RytUserId;
-
-    @NotBlank
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @NotBlank
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @NotBlank
-    @Email
-    @Column(name = "email", nullable = false, unique = true)
+//    @NotBlank
+//    @Email
+    @Column(name = "email", nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
     private String email;
 
-    @NotBlank
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-
+//    @NotBlank
+    @Column(name = "password", nullable = false, unique = true)
     private String password;
 
-    @Column(name = "school", nullable = false)
-    private String school;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-//    @Enumerated(EnumType.STRING)
-//    @NotNull
-//    private Role gender;
+//
+//    @Id()
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    private Long id;
+//
+//
+////    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long RytUserId;
+//
+//    @NotBlank
+//    @Column(name = "first_name", nullable = false)
+//    private String firstName;
+
+
 
 
 }
