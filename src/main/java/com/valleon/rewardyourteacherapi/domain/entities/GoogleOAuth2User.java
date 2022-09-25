@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.entity;
+package com.valleon.rewardyourteacherapi.domain.entities;
 
 public class GoogleOAuth2User {
     private String firstName;

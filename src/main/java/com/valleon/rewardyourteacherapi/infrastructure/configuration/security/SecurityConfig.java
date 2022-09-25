@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.security;
+package com.valleon.rewardyourteacherapi.infrastructure.configuration.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

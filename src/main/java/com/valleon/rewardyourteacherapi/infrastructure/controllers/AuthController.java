@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.controller;
+package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
 import com.valleon.rewardyourteacherapi.pojos.APIResponse;
 import com.valleon.rewardyourteacherapi.pojos.AuthRequest;
