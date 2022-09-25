@@ -46,7 +46,7 @@ public class AppUser {
 
 //    @Enumerated(EnumType.STRING)
 //    @NotNull
-//    private UserRole gender;
+//    private Role gender;
 
 
 }
