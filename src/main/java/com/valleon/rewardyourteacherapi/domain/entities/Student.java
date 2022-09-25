@@ -1,4 +1,33 @@
 package com.valleon.rewardyourteacherapi.domain.entities;
 
+import lombok.*;
+
+import javax.persistence.*;
+
+@Getter @Setter @Builder @Entity
+@NoArgsConstructor @AllArgsConstructor
+@Table(name = "students")
 public class Student {
+
+    @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    private String name;
+
+    @Column(unique = true, columnDefinition = "VARCHAR (250)")
+    private String displayPicture;
+
+    @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    private String phoneNumber;
+
+    @Column(unique = true, nullable = false )
+    private String title;
+
+    @ManyToOne
+    @JoinColumn(name="")
+    private School school;
+
+
+    private Teacher teacher;
+
+    private AppUser appUser;
+
 }
