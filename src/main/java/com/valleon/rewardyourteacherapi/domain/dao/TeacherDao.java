@@ -7,13 +7,13 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface Teacher extends CrudDAO<Teacher, Long>{
+public interface TeacherDao extends CrudDAO<TeacherDao, Long>{
 
-    Page<Teacher> findTeacherBySchool(List<School> school, Pageable pageable);
+    Page<TeacherDao> findTeacherBySchool(List<School> school, Pageable pageable);
 
-    Page<Teacher> findAllTeachers(Pageable pageable);
+    Page<TeacherDao> findAllTeachers(Pageable pageable);
 
-    Teacher searchTeacherByName(String name);
+    TeacherDao searchTeacherByName(String name);
 
-    Teacher getTeacherByAppUser(AppUser appUser);
+    TeacherDao getTeacherByAppUser(AppUser appUser);
 }

@@ -1,6 +1,6 @@
 //package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 //
-//import com.valleon.rewardyourteacherapi.pojos.APIResponse;
+//import com.valleon.rewardyourteacherapi.response.APIResponse;
 //import com.valleon.rewardyourteacherapi.pojos.AuthRequest;
 //import com.valleon.rewardyourteacherapi.service.RytUserService;
 //import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.pojos;
+package com.valleon.rewardyourteacherapi.domain.pojos;
 
 import lombok.Data;
 

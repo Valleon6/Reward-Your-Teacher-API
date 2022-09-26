@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "Teachers")
 public class Teacher extends AbstractEntity {
 
-    @Column(name = "Teacher Name", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
+    @Column(name = "TeacherDao Name", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private String name;
 
     @Column(name = "Phone Number", unique = true, nullable = false, columnDefinition = "VARCHAR(100)")

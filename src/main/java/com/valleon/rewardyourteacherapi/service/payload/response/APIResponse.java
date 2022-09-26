@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.pojos;
+package com.valleon.rewardyourteacherapi.service.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

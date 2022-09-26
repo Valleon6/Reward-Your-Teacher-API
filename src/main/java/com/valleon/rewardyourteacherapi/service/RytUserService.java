@@ -1,11 +1,11 @@
 //package com.valleon.rewardyourteacherapi.service;
 //
 //import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
-//import com.valleon.rewardyourteacherapi.pojos.APIResponse;
+//import com.valleon.rewardyourteacherapi.response.APIResponse;
 //import com.valleon.rewardyourteacherapi.pojos.AuthRequest;
 //import com.valleon.rewardyourteacherapi.persistence.repository.AppUserRepository;
 //import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.JwtService;
-//import com.valleon.rewardyourteacherapi.utilities.Responder;
+//import com.valleon.rewardyourteacherapi.service.payload.response.Responder;
 //import com.valleon.rewardyourteacherapi.utilities.Utility;
 //import lombok.AllArgsConstructor;
 //import org.springframework.http.ResponseEntity;

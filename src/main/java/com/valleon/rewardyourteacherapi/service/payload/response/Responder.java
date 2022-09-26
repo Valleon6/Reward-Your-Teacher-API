@@ -1,6 +1,6 @@
-package com.valleon.rewardyourteacherapi.utilities;
+package com.valleon.rewardyourteacherapi.service.payload.response;
 
-import com.valleon.rewardyourteacherapi.pojos.APIResponse;
+import com.valleon.rewardyourteacherapi.service.payload.response.APIResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

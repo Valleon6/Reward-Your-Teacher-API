@@ -29,7 +29,7 @@ public class Student extends AbstractEntity {
 //    private School school;
 //
 //
-//    private Teacher teacher;
+//    private TeacherDao teacher;
 //
 //    private AppUser appUser;
 

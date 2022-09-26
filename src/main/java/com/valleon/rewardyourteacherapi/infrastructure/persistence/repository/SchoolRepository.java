@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.persistence.repository;
+package com.valleon.rewardyourteacherapi.infrastructure.persistence.repository;
 
 import com.valleon.rewardyourteacherapi.domain.entities.School;
 import org.springframework.data.jpa.repository.JpaRepository;
