@@ -15,11 +15,10 @@ public class AppUser extends AbstractEntity{
 
 //    @NotBlank
 //    @Email
-    @Column(name = "email", nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
+    @Column(nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
     private String email;
 
-//    @NotBlank
-    @Column(name = "password", nullable = false, unique = true)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)

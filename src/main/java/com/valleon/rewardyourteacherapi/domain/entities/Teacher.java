@@ -33,6 +33,7 @@ public class Teacher extends AbstractEntity {
     @ManyToOne
     private AppUser appUser;
 
+    @ManyToOne
     private School school;
 
     private String subjectTaught;
