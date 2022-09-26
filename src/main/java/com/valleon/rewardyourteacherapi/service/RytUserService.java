@@ -3,7 +3,7 @@ package com.valleon.rewardyourteacherapi.service;
 import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.pojos.APIResponse;
 import com.valleon.rewardyourteacherapi.pojos.AuthRequest;
-import com.valleon.rewardyourteacherapi.persistence.repository.RytUserRepository;
+import com.valleon.rewardyourteacherapi.persistence.repository.AppUserRepository;
 import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.JwtService;
 import com.valleon.rewardyourteacherapi.utilities.Responder;
 import com.valleon.rewardyourteacherapi.utilities.Utility;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class RytUserService {
 
-    private final RytUserRepository rytUserRepository;
+    private final AppUserRepository appUserRepository;
     private final Utility utility;
     private final Responder responder;
 
@@ -31,11 +31,11 @@ public class RytUserService {
 
 
     public ResponseEntity<APIResponse> createUser(AppUser appUser) {
-        AppUser user = rytUserRepository.findById(appUser.getRytUserId()).orElse(null);
+        AppUser user = appUserRepository.findById(appUser.getRytUserId()).orElse(null);
         if (user == null) { // Carried out if user does not exist
             appUser.setRytUserId(utility.generateUniqueId()); // sets a unique Id for the user
             appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-            AppUser result = rytUserRepository.save(appUser);
+            AppUser result = appUserRepository.save(appUser);
             return responder.okay(result);
         } else {
             return responder.alreadyExist("User already exist");

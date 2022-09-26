@@ -7,12 +7,13 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Getter @Setter @Entity @Builder
 @AllArgsConstructor @NoArgsConstructor
 @Table(name = "Teachers")
-public class Teacher {
+public class Teacher extends AbstractEntity {
 
     @Column(name = "Teacher Name", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private String name;
@@ -28,6 +29,9 @@ public class Teacher {
 
     @Column(name = "Years Taught", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private String yearsOfTeaching;
+
+    @ManyToOne
+    private AppUser appUser;
 
     private School school;
 
