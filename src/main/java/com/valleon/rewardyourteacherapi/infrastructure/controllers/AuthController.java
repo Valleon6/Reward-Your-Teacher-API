@@ -1,6 +1,6 @@
 //package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 //
-//import com.valleon.rewardyourteacherapi.response.APIResponse;
+//import com.valleon.rewardyourteacherapi.response.ApiResponse;
 //import com.valleon.rewardyourteacherapi.pojos.AuthRequest;
 //import com.valleon.rewardyourteacherapi.service.RytUserService;
 //import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@
 //    private final RytUserService rytUserService;
 //
 //    @PostMapping("/auth")
-//    public ResponseEntity<APIResponse> authenticate(@RequestBody AuthRequest request){
+//    public ResponseEntity<ApiResponse> authenticate(@RequestBody AuthRequest request){
 //        System.out.println(request.getUsername());
 //        return  rytUserService.authenticate(request);
 //    }

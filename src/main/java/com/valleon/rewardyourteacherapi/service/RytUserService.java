@@ -1,7 +1,7 @@
 //package com.valleon.rewardyourteacherapi.service;
 //
 //import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
-//import com.valleon.rewardyourteacherapi.response.APIResponse;
+//import com.valleon.rewardyourteacherapi.response.ApiResponse;
 //import com.valleon.rewardyourteacherapi.pojos.AuthRequest;
 //import com.valleon.rewardyourteacherapi.persistence.repository.AppUserRepository;
 //import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.JwtService;
@@ -30,7 +30,7 @@
 //    private PasswordEncoder passwordEncoder;
 //
 //
-//    public ResponseEntity<APIResponse> createUser(AppUser appUser) {
+//    public ResponseEntity<ApiResponse> createUser(AppUser appUser) {
 //        AppUser user = appUserRepository.findById(appUser.getRytUserId()).orElse(null);
 //        if (user == null) { // Carried out if user does not exist
 //            appUser.setRytUserId(utility.generateUniqueId()); // sets a unique Id for the user
@@ -44,7 +44,7 @@
 //
 //    }
 //
-//    public ResponseEntity<APIResponse> authenticate(AuthRequest request){
+//    public ResponseEntity<ApiResponse> authenticate(AuthRequest request){
 //        System.out.println("I am here !!!!!!!!!!!!!!!!!!");
 //        Authentication auth= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 //        if(auth.isAuthenticated()){
@@ -55,7 +55,7 @@
 //        }
 //    }
 //
-//    public ResponseEntity<APIResponse> getRytUsers(){
+//    public ResponseEntity<ApiResponse> getRytUsers(){
 //        return responder.okay("#####This is the list of the users............");
 //    }
 //}

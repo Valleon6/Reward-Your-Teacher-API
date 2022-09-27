@@ -4,8 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter @Setter @Builder @Entity
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "students")
 public class Student extends AbstractEntity {
 
@@ -18,16 +22,16 @@ public class Student extends AbstractEntity {
     @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
     private String phoneNumber;
 
-    @Column(unique = true, nullable = false )
+    @Column(unique = true, nullable = false)
     private String title;
 
     @ManyToOne
     private AppUser appUser;
 
-//    @ManyToOne
-//    @JoinColumn(name="")
-//    private School school;
-//
+    @ManyToOne
+    @JoinColumn
+    private School school;
+
 //
 //    private TeacherDao teacher;
 //

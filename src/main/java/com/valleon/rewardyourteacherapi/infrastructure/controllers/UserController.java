@@ -1,7 +1,7 @@
 //package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 //
 //import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
-//import com.valleon.rewardyourteacherapi.response.APIResponse;
+//import com.valleon.rewardyourteacherapi.response.ApiResponse;
 //import com.valleon.rewardyourteacherapi.service.RytUserService;
 //import lombok.AllArgsConstructor;
 //import org.springframework.http.ResponseEntity;
@@ -15,12 +15,12 @@
 //
 //
 //    @PostMapping("/signup")
-////    public ResponseEntity<APIResponse> signUpRytUser(@RequestBody AppUser request) {
+////    public ResponseEntity<ApiResponse> signUpRytUser(@RequestBody AppUser request) {
 ////        return rytUserService.createUser(request);
 ////
 ////    }
 //    @GetMapping("/users")
-//    public ResponseEntity<APIResponse>  getRytUser(){
+//    public ResponseEntity<ApiResponse>  getRytUser(){
 //        return rytUserService.getRytUsers();
 //    }
 //
