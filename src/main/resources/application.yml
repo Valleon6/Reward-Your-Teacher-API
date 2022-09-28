@@ -15,4 +15,24 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQL95Dialect
                 format_sql: true
-        show-sql: true
+        show-sql: false
+    main:
+        allow-circular-references: true
+    servlet:
+        multipart:
+            enabled: true
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-authentication-method: post
+                        client-id: 497659411913-gvk3f86dpuhhb5o1jra0hscp795lcane.apps.googleusercontent.com
+                        client-secret: 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
+                        redirect-uri: https://localhost:9001/login/oauth2/code/google
+                        scope:
+                            - email
+                            - profile
+jwt:
+    adminKey:
+        passwordpasswordpasswordpasswordpasswordpasswordpasswordpassword
