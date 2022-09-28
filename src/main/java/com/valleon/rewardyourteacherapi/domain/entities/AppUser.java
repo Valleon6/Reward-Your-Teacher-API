@@ -1,20 +1,22 @@
 package com.valleon.rewardyourteacherapi.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.valleon.rewardyourteacherapi.domain.entities.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import java.util.List;
 
-//@AllArgsConstructor
-@Entity @Getter @Setter @Builder
-@NoArgsConstructor @AllArgsConstructor
+
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "RYT App Users")
-public class AppUser extends AbstractEntity{
+public class AppUser extends AbstractEntity {
 
-//    @NotBlank
-//    @Email
     @Column(nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
     private String email;
 
@@ -24,20 +26,11 @@ public class AppUser extends AbstractEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-//
-//    @Id()
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    private Long id;
-//
-//
-////    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long RytUserId;
-//
-//    @NotBlank
-//    @Column(name = "first_name", nullable = false)
-//    private String firstName;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "appUser")
+    private List<Teacher> teachers;
 
-
-
-
+    @JsonManagedReference
+    @OneToMany(mappedBy = "appUser")
+    private List<Student> students;
 }
