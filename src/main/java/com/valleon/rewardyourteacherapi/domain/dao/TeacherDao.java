@@ -2,18 +2,19 @@ package com.valleon.rewardyourteacherapi.domain.dao;
 
 import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.School;
+import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface TeacherDao extends CrudDAO<TeacherDao, Long>{
+public interface TeacherDao extends CrudDAO<Teacher, Long>{
 
-    Page<TeacherDao> findTeacherBySchool(List<School> school, Pageable pageable);
+    Page<Teacher> findTeacherBySchool(List<School> school, Pageable pageable);
 
-    Page<TeacherDao> findAllTeachers(Pageable pageable);
+    Page<Teacher> findAllTeachers(Pageable pageable);
 
-    TeacherDao searchTeacherByName(String name);
+    Teacher searchTeacherByName(String name);
 
-    TeacherDao getTeacherByAppUser(AppUser appUser);
+    Teacher getTeacherByAppUser(AppUser appUser);
 }

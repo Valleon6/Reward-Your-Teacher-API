@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "RYT App Users")
+@Table(name = "ryt_app_users")
 public class AppUser extends AbstractEntity {
 
     @Column(nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
