@@ -3,6 +3,7 @@ package com.valleon.rewardyourteacherapi.service.impl;
 import com.valleon.rewardyourteacherapi.domain.dao.AppUserDao;
 import com.valleon.rewardyourteacherapi.domain.dao.SchoolDao;
 import com.valleon.rewardyourteacherapi.domain.dao.StudentDao;
+import com.valleon.rewardyourteacherapi.domain.dao.TeacherDao;
 import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.School;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
@@ -34,7 +35,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     private final PasswordEncoder passwordEncoder;
 
-//    private final TeacherDao teacherDao;
+    private final TeacherDao teacherDao;
 
 
     @Override
@@ -63,29 +64,5 @@ public class RegisterServiceImpl implements RegisterService {
                 .build();
 
         return registrationResponse.created("Success", LocalDateTime.now(), studentDao.saveRecord(student));
-        //        Optional<AppUser> appUser = appUserDao.findAppUserByEmail(studentRegistrationRequest.getEmail());
-//        if (appUser.isPresent()) {
-//            throw new EntityAlreadyExistException("Email already taken");
-//        }
-//
-//        School school = schoolDao.findSchool(studentRegistrationRequest.getSchoolName())
-//                .orElseThrow(() -> new CustomNotFoundException("School not found"));
-//
-//        AppUser appUserEntity = AppUser.builder()
-//                .email(studentRegistrationRequest.getEmail())
-//                .password(passwordEncoder.encode(studentRegistrationRequest.getPassword()))
-//                .role(Role.STUDENT)
-//                .build();
-//        AppUserEntity appUserEntity1 = appUserDao.saveRecord(appUserEntity);
-//        StudentEntity student = StudentEntity
-//                .builder()
-//                .name(studentRegistrationRequest.getName())
-//                .phoneNumber(studentRegistrationRequest.getPhoneNumber())
-//                .school(school)
-//                .appUserEntity(appUserEntity1)
-//                .build();
-//
-//        return registrationResponse.created("Success", LocalDateTime.now(), studentDao.saveRecord(student));
-
     }
 }
