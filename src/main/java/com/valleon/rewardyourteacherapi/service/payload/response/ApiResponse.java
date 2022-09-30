@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.security.PublicKey;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,9 +16,19 @@ public class ApiResponse<T> {
         return new RegistrationResponse<>(success, localDateTime, payload);
     }
 
-//    private String message;
-//    private boolean success;
-//    private T payload;
+    public LoginResponse accepted(String success,LocalDateTime localDateTime){
+        return new LoginResponse(success, localDateTime);
+    }
 
+    public EditProfileResponse edited(String success, LocalDateTime localDateTime){
+        return new EditProfileResponse(success, localDateTime);
+    }
+
+    public PaymentResponse success(String success, LocalDateTime localDateTime){
+        return new PaymentResponse(success, localDateTime);
+    }
+    public WalletResponse checked(BigDecimal balance, BigDecimal totalMoneySpent) {
+        return new WalletResponse(balance, totalMoneySpent);
+    }
     
 }
