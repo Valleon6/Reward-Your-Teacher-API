@@ -19,22 +19,26 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "teachers")
+@Table(name = "teacher")
 public class Teacher extends AbstractEntity {
-
-    @Column(name = "TeacherDao Name", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
+//    name = "TeacherDao Name",
+    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private String name;
 
-    @Column(name = "Phone Number", unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+//    name = "Phone Number",
+    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
     private Integer phoneNumber;
 
-    @Column(name = "National Identity Number", unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+//    name = "National Identity Number",
+    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
     private Integer nin;
 
-    @Column(name = "Display Picture", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
+//    name = "Display Picture",
+    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private String displayPicture;
 
-    @Column(name = "Years Taught", unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
+//    name = "Years Taught",
+    @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private String yearsOfTeaching;
 
     @ManyToOne

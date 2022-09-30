@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface TransactionDao extends CrudDAO<Transaction, Long> {
-    Page<Transaction> fireTransactionByStudent(Pageable pageable, Student student);
+    Page<Transaction> findTransactionByStudent(Pageable pageable, Student student);
     Page<Transaction> findTransactionByTeacher(Pageable pageable, Teacher teacher);
 
 }
