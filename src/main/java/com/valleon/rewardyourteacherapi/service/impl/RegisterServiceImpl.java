@@ -38,6 +38,7 @@ public class RegisterServiceImpl implements RegisterService {
     private final TeacherDao teacherDao;
 
 
+
     @Override
     public RegistrationResponse registerStudent(StudentRegistrationRequest studentRegistrationRequest) {
         Optional<AppUser> appUser = appUserDao.findAppUserByEmail(studentRegistrationRequest.getEmail());
@@ -65,4 +66,7 @@ public class RegisterServiceImpl implements RegisterService {
 
         return registrationResponse.created("Success", LocalDateTime.now(), studentDao.saveRecord(student));
     }
+
+
+
 }
