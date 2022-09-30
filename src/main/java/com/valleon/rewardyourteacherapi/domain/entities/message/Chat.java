@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "chat")
 public class Chat extends AbstractEntity {
 
-    @Column(name = "message", nullable = false, columnDefinition = "TEXT")
+    @Column(/*name = "message",*/ nullable = false, columnDefinition = "TEXT")
     private String  message;
 
     @ManyToOne
@@ -30,12 +30,10 @@ public class Chat extends AbstractEntity {
     private Teacher teacher;
 
     @CreationTimestamp
-    @Column(name = "Send_Date", nullable = false, updatable = false)
+    @Column(/*name = "Send_Date",*/ nullable = false, updatable = false)
     private LocalDateTime sendDate;
 
     @CreationTimestamp
-    @Column(name = "Date Received", nullable = false, updatable = false)
+    @Column(/*name = "Date Received",*/ nullable = false, updatable = false)
     private LocalDateTime receiveDate;
-
-
 }
