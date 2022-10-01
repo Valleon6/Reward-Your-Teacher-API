@@ -14,7 +14,7 @@ public class StudentProfileRequest {
     private String name;
 
     @Pattern(regexp = "^(.+)@(\\S+)$", message = "Enter a valid phone number")
-    private String phone;
+    private String phoneNumber;
 
     @Pattern(regexp = "^(.+)@(\\S+)$", message = "Enter a valid email address")
     private String email;
