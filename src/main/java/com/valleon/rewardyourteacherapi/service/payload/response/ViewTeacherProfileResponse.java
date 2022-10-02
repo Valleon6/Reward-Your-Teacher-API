@@ -10,6 +10,7 @@ import lombok.Data;
 public class ViewTeacherProfileResponse {
     private String name;
     private String email;
+    private String schoolName;
     private String profilePicture;
     private String phoneNumber;
     private String about;
