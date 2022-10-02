@@ -1,5 +1,7 @@
 package com.valleon.rewardyourteacherapi.service.payload;
 
+import com.valleon.rewardyourteacherapi.service.payload.response.ViewTeacherProfileResponse;
+
 public interface ViewTeacherProfileService {
-    ViewTeacherProfileService viewTeacherByName (String name);
+    ViewTeacherProfileResponse viewTeacherByName (String name);
 }
