@@ -5,10 +5,12 @@ import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
 import com.valleon.rewardyourteacherapi.domain.entities.message.Notification;
 import com.valleon.rewardyourteacherapi.infrastructure.persistence.repository.NotificationRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class NotificationDaoImpl extends CrudDaoImpl<Notification, Long> implements NotificationDao {
 
     private final NotificationRepository notificationRepository;
