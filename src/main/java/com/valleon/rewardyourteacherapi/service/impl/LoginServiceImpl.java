@@ -71,7 +71,7 @@ AppUser appUser = appUserDao.findAppUserByEmail(studentLoginRequest.getEmail())
     }
 
     @Override
-    public LoginResponse StudentSocialLogin(SocialLoginRequest socialLoginRequest) {
+    public LoginResponse studentSocialLogin(SocialLoginRequest socialLoginRequest) {
         socialLoginRequest.setPassword("");
 
         Optional<AppUser> appUser = appUserDao.findAppUserByEmail(socialLoginRequest.getPassword());
