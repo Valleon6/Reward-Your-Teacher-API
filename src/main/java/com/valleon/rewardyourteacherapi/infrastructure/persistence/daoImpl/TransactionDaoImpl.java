@@ -8,7 +8,9 @@ import com.valleon.rewardyourteacherapi.infrastructure.persistence.repository.Tr
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TransactionDaoImpl extends CrudDaoImpl<Transaction, Long> implements TransactionDao {
 
     private final TransactionRepository transactionRepository;
