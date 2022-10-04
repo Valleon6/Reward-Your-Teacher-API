@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +24,6 @@ public class TransactionRequest {
     private Long teacherId;
 
     @CreationTimestamp
-    private Long createdAt;
+    private LocalDateTime createdAt;
 
 }
