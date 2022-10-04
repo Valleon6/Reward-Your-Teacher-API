@@ -1,0 +1,82 @@
+[
+{
+
+  "schoolName" : "British International School Lagos",
+  "schoolType" : "secondary",
+  "schoolAddress" : "1, Landbridge Avenue, Oniru Private Estate, Victoria Island, Lagos Nigeria",
+  "schoolCity" : "ikeja",
+  "schoolState" : "Lagos"
+},
+{
+
+  "schoolName" : "Brookstone Secondary School",
+  "schoolType" : "secondary",
+  "schoolAddress" : "International Airport Road, Igwuruta, Port Harcourt, Rivers Nigeria",
+  "schoolCity" : "Igwuruta",
+  "schoolState" : "Port Harcourt"
+},
+{
+
+  "schoolName" : "Effective International College",
+  "schoolType" : "secondary",
+  "schoolAddress" : "University of Ilorin Road, Tanke, Ilorin, Kwara Nigeria",
+  "schoolCity" : "Ilorin",
+  "schoolState" : "Kwara Nigeria"
+},
+{
+
+  "schoolName" : "Emmanuel International College",
+  "schoolType" : "secondary",
+  "schoolAddress" : "Opposite Government House Rayfield, Jos, Plateau Nigeria",
+  "schoolCity" : "Jos",
+  "schoolState" : "Plateau"
+},
+{
+
+  "schoolName" : "Federal Government College Enugu",
+  "schoolType" : "secondary",
+  "schoolAddress" : "Independence Layout, Enugu, Enugu Nigeria",
+  "schoolCity" : "Enugu",
+  "schoolState" : "Enugu"
+},
+{
+
+  "schoolName" : "GOF International College",
+  "schoolType" : "secondary",
+  "schoolAddress" : "Onward Estate Gbongan/Ibadan Road, Osogbo, Osun Nigeria",
+  "schoolCity" : "Osogbo",
+  "schoolState" : "Osun"
+},
+{
+
+  "schoolName" : "British International School Lagos",
+  "schoolType" : "secondary",
+  "schoolAddress" : "ikeja,Lagos",
+  "schoolCity" : "ikeja",
+  "schoolState" : "Lagos"
+},
+{
+
+  "schoolName" : "Homaj International Secondary School",
+  "schoolType" : "secondary",
+  "schoolAddress" : "Itanla Akure Road, Akure, Ondo State Nigeria",
+  "schoolCity" : "Akure",
+  "schoolState" : "Ondo"
+},
+{
+
+  "schoolName" : "King's College Lagos",
+  "schoolType" : "secondary",
+  "schoolAddress" : "3 Catholic Mission, Lagos Island, Lagos Nigeria",
+  "schoolCity" : "Lagos Island",
+  "schoolState" : "Lagos"
+},
+{
+
+  "schoolName" : "Pearlville School",
+  "schoolType" : "secondary",
+  "schoolAddress" : "1 Pearlville Avenue Avu-Owerri, Owerri, Imo State Nigeria",
+  "schoolCity" : "Owerri",
+  "schoolState" : "Imo"
+}
+  ]
