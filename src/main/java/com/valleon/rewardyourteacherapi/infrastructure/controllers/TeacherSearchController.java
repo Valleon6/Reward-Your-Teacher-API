@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/search/")
+@RequestMapping("api/v1/search/teacher")
 public class TeacherSearchController {
 
     private TeacherService teacherService;
