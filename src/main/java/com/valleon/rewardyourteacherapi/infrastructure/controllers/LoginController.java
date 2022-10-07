@@ -2,7 +2,7 @@ package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
 import com.valleon.rewardyourteacherapi.service.payload.LoginService;
 import com.valleon.rewardyourteacherapi.service.payload.request.LoginRequest;
-anaimport com.valleon.rewardyourteacherapi.service.payload.request.SocialLoginRequest;
+import com.valleon.rewardyourteacherapi.service.payload.request.SocialLoginRequest;
 import com.valleon.rewardyourteacherapi.service.payload.response.LoginResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
