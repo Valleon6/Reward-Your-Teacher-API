@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 import springfox.documentation.swagger2.mappers.LicenseMapper;
 
 @Configuration
-@EnableSwagger2WebMvc
+//@EnableSwagger2WebMvc
 @ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", havingValue = "true",matchIfMissing = true)
 public class SwaggerConfig {
 
@@ -68,27 +68,23 @@ public class SwaggerConfig {
     }
 
 
-    private ApiInfo fetchApiInfo(){
-        springfox.documentation.service.Contact contact = new springfox.documentation.service.Contact(contactName,contactUrl,contactEmail);
-        LicenseMapper.License license = new License(licenseName, licenseUrl);
-
-        return new ApiInfo(title, description, version, termOfService, contact, license, licenseUrl  );
-//                .title(title)
-//                .description(description)
-//                .version(version)
-//                .contact(contact)
-//                .license(license);
-    }
-    //Creating a Docket bean
-    // builder which is intended to be the primary interface into the swagger-springmvc framework
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(fetchApiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-
-    }
+//    private ApiInfo fetchApiInfo(){
+//        springfox.documentation.service.Contact contact = new springfox.documentation.service.Contact(contactName,contactUrl,contactEmail);
+//        License license = new License().name(licenseName).url(licenseUrl);
+//
+////        return new ApiInfo(title, description, version, termOfService, contact, license );
+//    }
+//
+//    //Creating a Docket bean
+//    // builder which is intended to be the primary interface into the swagger-springmvc framework
+//    @Bean
+//    public Docket api() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .select()
+//                .apis(RequestHandlerSelectors.any())
+//                .paths(PathSelectors.any())
+//                .build()
+//                .apiInfo(fetchApiInfo());
+//
+//    }
 }
