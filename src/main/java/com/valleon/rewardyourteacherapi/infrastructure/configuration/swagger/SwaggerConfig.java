@@ -1,4 +1,4 @@
-package com.valleon.rewardyourteacherapi.configuration;
+package com.valleon.rewardyourteacherapi.infrastructure.configuration.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
