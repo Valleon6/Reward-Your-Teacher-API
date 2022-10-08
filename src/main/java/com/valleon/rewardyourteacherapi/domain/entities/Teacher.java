@@ -27,11 +27,11 @@ public class Teacher extends AbstractEntity {
 
 //    name = "Phone Number",
     @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
 //    name = "National Identity Number",
     @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
-    private Integer nin;
+    private String nin;
 
 //    name = "Display Picture",
     @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
@@ -39,7 +39,7 @@ public class Teacher extends AbstractEntity {
 
 //    name = "Years Taught",
     @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
-    private String yearsOfTeaching;
+    private Integer yearsOfTeaching;
 
     @ManyToOne
     @JsonBackReference

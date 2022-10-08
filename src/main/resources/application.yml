@@ -1,9 +1,6 @@
 server:
     port: 8001
 spring:
-    mvc:
-        pathmatch:
-            matching-strategy: ANT_PATH_MATCHER
     datasource:
         password: Valleon6
         url: jdbc:postgresql://localhost:5432/rytdatabase
