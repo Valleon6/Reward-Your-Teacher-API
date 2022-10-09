@@ -27,7 +27,7 @@ public class WalletController {
         return  ResponseEntity.ok(walletService.getStudentWalletBalance());
     }
 
-    @GetMapping("/teacher/teacher")
+    @GetMapping("/teacher/balance")
     public ResponseEntity<WalletResponse> getTeacherBalance(){
         return ResponseEntity.ok(walletService.getTeacherWalletResponse());
     }
