@@ -27,6 +27,6 @@ public class WalletDaoImpl extends CrudDaoImpl<Wallet, Long> implements WalletDa
 
     @Override
     public Optional<Wallet> findWalletByTeacher(Teacher teacher) {
-        return null;
+        return walletRepository.findWalletByTeacher(teacher);
     }
 }
