@@ -15,18 +15,18 @@ public class NotificationDaoImpl extends CrudDaoImpl<Notification, Long> impleme
 
     private final NotificationRepository notificationRepository;
 
-    public NotificationDaoImpl(NotificationRepository notificationRepository) {
+    protected NotificationDaoImpl(NotificationRepository notificationRepository) {
         super(notificationRepository);
         this.notificationRepository = notificationRepository;
     }
 
     @Override
-    public Optional<List<Notification>> findNotificationByStudent(Student student) {
+    public List<Notification> findNotificationByStudent(Student student) {
         return notificationRepository.findNotificationByStudent(student);
     }
 
     @Override
-    public Optional<List<Notification>> findNotificationByTeacher(Teacher teacher) {
+    public List<Notification> findNotificationByTeacher(Teacher teacher) {
         return notificationRepository.findNotificationByTeacher(teacher);
     }
 }
