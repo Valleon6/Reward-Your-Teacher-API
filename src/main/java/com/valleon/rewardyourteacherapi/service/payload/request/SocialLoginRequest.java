@@ -1,12 +1,14 @@
 package com.valleon.rewardyourteacherapi.service.payload.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Pattern;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class SocialLoginRequest {
 
     @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid FirstName")
