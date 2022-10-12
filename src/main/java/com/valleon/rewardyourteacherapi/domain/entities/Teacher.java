@@ -19,25 +19,21 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "teacher")
+@Table(name = "teachers")
 public class Teacher extends AbstractEntity {
-//    name = "TeacherDao Name",
-    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(250)")
     private String name;
 
-//    name = "Phone Number",
-    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column( unique = true, columnDefinition = "VARCHAR(100)")
     private String phoneNumber;
 
-//    name = "National Identity Number",
-    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column(columnDefinition = "VARCHAR(100)")
     private String nin;
 
-//    name = "Display Picture",
-    @Column( unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
+    @Column(columnDefinition = "VARCHAR(250)")
     private String displayPicture;
 
-//    name = "Years Taught",
     @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
     private Integer yearsOfTeaching;
 
@@ -49,13 +45,14 @@ public class Teacher extends AbstractEntity {
     @JoinColumn
     private School school;
 
-    @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column(columnDefinition = "VARCHAR(100)")
     private String subjectTaught;
 
     @Column(columnDefinition = "VARCHAR(250)")
     private String about;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "teacher_status")
     private Status status;
 
     @Enumerated(value = EnumType.STRING)
@@ -76,8 +73,8 @@ public class Teacher extends AbstractEntity {
     @OneToMany(mappedBy = "teacher", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Notification> notificationList = new ArrayList<>();
 
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
-//    private List<Student> studentList = new ArrayList<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<Student> studentList = new ArrayList<>();
 
 }
