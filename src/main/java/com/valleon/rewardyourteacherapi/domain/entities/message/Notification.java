@@ -23,6 +23,8 @@ public class Notification extends AbstractEntity {
     @Column(name = "message", nullable = false, columnDefinition = "TEXT")
     private String message;
 
+//    private NotificationType
+
     @JsonBackReference
     @ManyToOne
     private Student student;

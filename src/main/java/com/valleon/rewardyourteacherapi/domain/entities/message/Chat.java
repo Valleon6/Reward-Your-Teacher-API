@@ -18,22 +18,22 @@ import java.time.LocalDateTime;
 @Table(name = "chat")
 public class Chat extends AbstractEntity {
 
-    @Column(/*name = "message",*/ nullable = false, columnDefinition = "TEXT")
+    @Column(name = "message", nullable = false, columnDefinition = "TEXT")
     private String  message;
 
     @ManyToOne
-    @JoinColumn
-    private Student student;
+    @JoinColumn(name = "student_chat_id")
+    private Student student_id;
 
     @ManyToOne
-    @JoinColumn
-    private Teacher teacher;
+    @JoinColumn(name = "teacher_chat_id")
+    private Teacher teacher_id;
 
     @CreationTimestamp
-    @Column(/*name = "Send_Date",*/ nullable = false, updatable = false)
+    @Column(name = "send_Date", nullable = false, updatable = false)
     private LocalDateTime sendDate;
 
     @CreationTimestamp
-    @Column(/*name = "Date Received",*/ nullable = false, updatable = false)
+    @Column(name = "Date Received", nullable = false, updatable = false)
     private LocalDateTime receiveDate;
 }
