@@ -1,6 +1,7 @@
 package com.valleon.rewardyourteacherapi.service.payload.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.Pattern;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class TeacherProfileRequest {
 
     @Pattern(regexp = "^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)")
@@ -32,5 +34,8 @@ public class TeacherProfileRequest {
 
     @Pattern(regexp = "[+-]?[0-9][0-9]*")
     private String nin;
+
+    @Pattern(regexp = "^(.+)@(\\S+)$", message = "Enter a valid phone number")
+    private String phone;
 
 }
