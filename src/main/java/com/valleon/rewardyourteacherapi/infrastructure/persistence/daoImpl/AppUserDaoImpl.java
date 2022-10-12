@@ -24,6 +24,6 @@ public class AppUserDaoImpl extends CrudDaoImpl<AppUser, Long> implements AppUse
 
     @Override
     public AppUser findAppUserByEmailAndRole(String email, Role role) {
-        return null;
+        return appUserRepository.findAppUserByEmailAndRole(email, role);
     }
 }
