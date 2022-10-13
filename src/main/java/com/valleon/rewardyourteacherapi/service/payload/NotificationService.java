@@ -1,7 +1,9 @@
 package com.valleon.rewardyourteacherapi.service.payload;
 
 import com.valleon.rewardyourteacherapi.domain.entities.message.Notification;
+import com.valleon.rewardyourteacherapi.service.payload.request.NotificationRequest;
 import com.valleon.rewardyourteacherapi.service.payload.request.TransactionRequest;
+import com.valleon.rewardyourteacherapi.service.payload.response.NotificationResponse;
 
 import java.util.List;
 
@@ -13,8 +15,10 @@ public interface NotificationService {
 
     Notification teacherReceivedNotification (TransactionRequest transactionRequest);
 
-    List<Notification> allNotificationsOfA_StudentById(Long studentId);
+    List<NotificationRequest> allNotificationsOfA_StudentById(Long studentId);
 
-    List<Notification> allNotificationsOfA_TeacherById(Long teacherId);
+    List<NotificationRequest> allNotificationsOfA_TeacherById(Long teacherId);
+
+    NotificationResponse studentAppreciatedNotification(Long studentId, Long teacherId);
 
 }
