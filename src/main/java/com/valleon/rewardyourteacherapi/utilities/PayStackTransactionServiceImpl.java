@@ -32,6 +32,8 @@ public class PayStackTransactionServiceImpl implements PaymentService {
             Gson gson = new Gson();
             // add payStack charges to the amount
             StringEntity postingString = new StringEntity(gson.toJson(request));
+
+            //Consuming paystack api using web client
             HttpClient client = HttpClientBuilder.create().build();
             HttpPost post = new HttpPost("https://api.paystack.co/transaction/initialize");
             post.setEntity(postingString);

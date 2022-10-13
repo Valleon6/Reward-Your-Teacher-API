@@ -3,19 +3,23 @@ package com.valleon.rewardyourteacherapi.utilities;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.valleon.rewardyourteacherapi.service.payload.response.VerifyTransactionResponse;
+import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 @Service
+@RequiredArgsConstructor
 public class PayStackVerification extends VerifyTransactionResponse {
 
+    @Value(value = "sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394")
+    private String payStackSecretKey;
     public PayStackVerification verifyTransaction(String reference) throws Exception {
 
         PayStackVerification payStackResponse;
@@ -25,7 +29,7 @@ public class PayStackVerification extends VerifyTransactionResponse {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet("https://api.paystack.co/transaction/verify/" + reference);
             request.addHeader("Content-type", "application/json");
-            request.addHeader("Authorization", "Bearer sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394");
+            request.addHeader("Authorization", "Bearer " + payStackSecretKey /*sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394"*/);
 
             StringBuilder result = new StringBuilder();
 
