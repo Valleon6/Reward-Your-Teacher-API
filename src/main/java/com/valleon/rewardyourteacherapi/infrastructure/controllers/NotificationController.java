@@ -20,7 +20,7 @@ public class NotificationController {
     public NotificationController(NotificationService notificationService) {
         this.notificationService = notificationService;
     }
-    
+
     @GetMapping("/student/{studentId}")
     public ResponseEntity<List<NotificationRequest>> retrieveStudentNotification(@PathVariable("studentId") Long studentId){
         return  new ResponseEntity<>(notificationService.allNotificationsOfA_StudentById(studentId), HttpStatus.FOUND);
