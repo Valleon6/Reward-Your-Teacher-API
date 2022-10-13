@@ -19,8 +19,8 @@ import java.math.BigDecimal;
 @Table(name = "wallet")
 public class Wallet extends AbstractEntity {
 
-    @DecimalMin(value= "0.0", inclusive = false)
-    @Digits(integer = 9, fraction= 2)
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 9, fraction = 2)
     @Column(name = "balance", nullable = false, columnDefinition = "NUMERIC(11,2) DEFAULT 0.0")
     private BigDecimal balance;
 

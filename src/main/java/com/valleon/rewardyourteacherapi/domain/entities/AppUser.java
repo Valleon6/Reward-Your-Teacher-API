@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ryt_app_users")
+@Table(name = "app_user")
 public class AppUser extends AbstractEntity {
 
     @Column(nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
@@ -25,6 +25,9 @@ public class AppUser extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean isVerified;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "appUser")

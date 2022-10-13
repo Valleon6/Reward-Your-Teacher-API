@@ -1,14 +1,20 @@
 package com.valleon.rewardyourteacherapi.service.payload.request;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class FundWalletRequest {
-    private String amount;
+@Data
+public class EmailDetailsRequest {
+
+    private String recipient;
+    private String msgBody;
+    private String subject;
+    private String attachment;
+
 }

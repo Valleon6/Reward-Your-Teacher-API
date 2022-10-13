@@ -13,9 +13,5 @@ import java.io.IOException;
 public interface TeacherProfileService {
     EditProfileResponse editTeacherProfile(TeacherProfileRequest teacherProfileRequest, MultipartFile file) throws IOException;
 
-    interface RegisterService {
-        RegistrationResponse registerStudent(StudentRegistrationRequest studentRegistrationRequest);
 
-        RegistrationResponse registerTeacher(TeacherRegistrationRequest teacherRegistrationRequest, MultipartFile file) throws IOException;
-    }
 }

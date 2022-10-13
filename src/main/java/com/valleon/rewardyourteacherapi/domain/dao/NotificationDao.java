@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface NotificationDao extends CrudDAO<Notification,Long>{
-    Optional <List<Notification>> findNotificationByStudent(Student student);
+    List<Notification> findNotificationByStudent(Student student);
 
-    Optional <List<Notification>> findNotificationByTeacher(Teacher teacher);
+    List<Notification> findNotificationByTeacher(Teacher teacher);
 }

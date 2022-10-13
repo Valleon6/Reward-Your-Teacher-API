@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherDaoImpl extends CrudDaoImpl<Teacher, Long> implements TeacherDao {
@@ -33,7 +34,7 @@ public class TeacherDaoImpl extends CrudDaoImpl<Teacher, Long> implements Teache
     }
 
     @Override
-    public Teacher searchTeacherByName(String name) {
+    public Optional<List<Teacher>> findTeacherByName(String name) {
         return teacherRepository.findTeacherByNameContainingIgnoreCase(name);
     }
 

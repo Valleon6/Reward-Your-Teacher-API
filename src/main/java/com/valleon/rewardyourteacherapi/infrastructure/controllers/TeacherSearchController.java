@@ -28,7 +28,7 @@ public class TeacherSearchController {
         return new ResponseEntity<>(teacherSearchService.findAllTeachersInASchool(offset, pageSize, schoolName), HttpStatus.FOUND);
     }
 
-    @GetMapping("/")
+    @GetMapping("/all-teachers")
     public ResponseEntity<List<TeacherSearchResponse>> getAllTeachers(
             @RequestParam("offset") int offset,
             @RequestParam ("pageSize") int pageSize){

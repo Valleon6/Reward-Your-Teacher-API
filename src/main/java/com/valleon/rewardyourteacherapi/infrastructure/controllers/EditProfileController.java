@@ -7,10 +7,7 @@ import com.valleon.rewardyourteacherapi.service.payload.request.TeacherProfileRe
 import com.valleon.rewardyourteacherapi.service.payload.response.EditProfileResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -24,12 +21,12 @@ public class EditProfileController {
     private final StudentProfileService studentProfileService;
     private final TeacherProfileService teacherProfileService;
 
-    @PostMapping("/student")
+    @PutMapping("/student")
     public ResponseEntity<EditProfileResponse> editStudentProfile(@Valid @RequestBody StudentProfileRequest studentProfileRequest){
         return ResponseEntity.ok(studentProfileService.editStudentProfile(studentProfileRequest));
     }
 
-    @PostMapping("/teacher")
+    @PutMapping("/teacher")
     public ResponseEntity<EditProfileResponse> editTeacherProfile(@Valid @RequestBody TeacherProfileRequest teacherProfileRequest, MultipartFile file) throws IOException {
         return ResponseEntity.ok(teacherProfileService.editTeacherProfile(teacherProfileRequest, file));
     }

@@ -1,8 +1,15 @@
 package com.valleon.rewardyourteacherapi.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.valleon.rewardyourteacherapi.domain.entities.message.Notification;
+import com.valleon.rewardyourteacherapi.domain.entities.transact.Transaction;
+import com.valleon.rewardyourteacherapi.domain.entities.transact.Wallet;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,28 +20,41 @@ import javax.persistence.*;
 @Table(name = "students")
 public class Student extends AbstractEntity {
 
-    @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(100)")
     private String name;
 
-    @Column(unique = true, columnDefinition = "VARCHAR (250)")
+    @Column(columnDefinition = "VARCHAR (250)")
     private String displayPicture;
 
-    @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(100)")
+    @Column(columnDefinition = "VARCHAR(100)")
     private String phoneNumber;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String title;
 
+    @JsonBackReference
     @ManyToOne
+    Teacher teacher;
+
+    @ManyToOne
+    @JsonBackReference
     private AppUser appUser;
 
     @ManyToOne
     @JoinColumn
     private School school;
 
-//
-//    private TeacherDao teacher;
-//
-//    private AppUser appUser;
+    @JsonManagedReference
+    @OneToOne (mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Wallet wallet;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transaction> transactionList = new ArrayList<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notificationList = new ArrayList<>();
+
 
 }
