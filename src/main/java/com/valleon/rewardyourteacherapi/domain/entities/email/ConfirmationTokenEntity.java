@@ -37,7 +37,7 @@ public class ConfirmationTokenEntity extends AbstractEntity {
         this.appUser = appUser;
     }
 
-    public ConfirmationTokenEntity(LocalDateTime createdAt, String token, LocalDateTime expiresAt, AppUser appUser) {
+    public ConfirmationTokenEntity(String token, LocalDateTime createdAt, LocalDateTime expiresAt, AppUser appUser) {
         super(createdAt);
         this.token = token;
         this.expiresAt = expiresAt;
