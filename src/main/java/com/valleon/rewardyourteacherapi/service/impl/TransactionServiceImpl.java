@@ -7,7 +7,9 @@ import com.valleon.rewardyourteacherapi.domain.dao.TransactionDao;
 import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
+import com.valleon.rewardyourteacherapi.domain.entities.enums.Role;
 import com.valleon.rewardyourteacherapi.domain.entities.transact.Transaction;
+import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.UserDetails;
 import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.CustomNotFoundException;
 import com.valleon.rewardyourteacherapi.service.payload.TransactionService;
 import com.valleon.rewardyourteacherapi.service.payload.response.TransactionResponse;
@@ -16,7 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,35 +39,28 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponse> getStudentTransactions(int offset, int pageSize) {
-       Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = UserDetails.getLoggedInUserDetails();
 
-       if(!(principal instanceof UserDetails)){
-           throw new CustomNotFoundException("User not found");
-       }
+        AppUser appUser = userDao.findAppUserByEmailAndRole(email, Role.STUDENT);
+        if (appUser == null) {
+            throw new CustomNotFoundException("User not found");
+        }
 
-       String email = ((UserDetails)principal).getUsername();
-       AppUser appUser = userDao.findAppUserByEmail(email)
-               .orElseThrow(() -> new CustomNotFoundException("User not found."));
+        Student student = studentDao.getStudentByAppUser(appUser);
 
-       Student student = studentDao.getStudentByAppUser(appUser);
-
-        Pageable pageable= PageRequest.of(offset, pageSize);
-
+        Pageable pageable = PageRequest.of(offset, pageSize);
         Page<Transaction> pageList = transactionDao.findTransactionByStudent(pageable, student);
-
         List<TransactionResponse> transactionResponses = new ArrayList<>();
-
-        pageList.forEach(page ->{
-            TransactionResponse transactionResponse = TransactionResponse.builder()
+        pageList.forEach(page -> {
+            TransactionResponse transactionResponse1 = TransactionResponse.builder()
                     .transactionType(page.getTransactionType())
                     .amount(page.getAmount())
                     .description(page.getDescription())
                     .createdAt(page.getCreatedAt())
                     .build();
+            transactionResponses.add(transactionResponse1);
 
-            transactionResponses.add(transactionResponse);
         });
-
         return transactionResponses;
     }
 
@@ -74,57 +68,35 @@ public class TransactionServiceImpl implements TransactionService {
     public List<TransactionResponse> getTeacherTransactions(int offset, int pageSize) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if(!(principal instanceof UserDetails)){
+        if (!(principal instanceof org.springframework.security.core.userdetails.UserDetails)) {
             throw new CustomNotFoundException("user not found");
         }
+        String email = ((org.springframework.security.core.userdetails.UserDetails)principal).getUsername();
+        AppUser appUserEntity = userDao.findAppUserByEmailAndRole(email,Role.TEACHER);
+        if(appUserEntity == null){
+            throw new CustomNotFoundException("User not found");
+        }
 
-        String email = ((UserDetails)principal).getUsername();
-        AppUser appUser = userDao.findAppUserByEmail(email)
-                .orElseThrow(()-> new CustomNotFoundException("User not found"));
+        Teacher teacher = teacherDao.getTeacherByAppUser(appUserEntity);
+        if(teacher == null){
+            throw new CustomNotFoundException("Invalid user");
+        }
 
-        Teacher teacher = teacherDao.getTeacherByAppUser(appUser);
-
-        Pageable pageable = PageRequest.of(offset, pageSize);
-
-        Page<Transaction> pageList = transactionDao.findTransactionByTeacher(pageable, teacher);
-
+        Pageable pageable = PageRequest.of(offset,pageSize);
+        Page<Transaction> pageList = transactionDao.findTransactionByTeacher(pageable,teacher);
         List<TransactionResponse> transactionResponses = new ArrayList<>();
-
-        pageList.forEach(page ->{
-            TransactionResponse transactionResponse = TransactionResponse.builder()
+        pageList.forEach(page->{
+            TransactionResponse transactionResponse1 = TransactionResponse.builder()
                     .transactionType(page.getTransactionType())
                     .amount(page.getAmount())
                     .description(page.getDescription())
                     .createdAt(page.getCreatedAt())
                     .build();
+            transactionResponses.add(transactionResponse1);
 
-            transactionResponses.add(transactionResponse);
         });
-
         return transactionResponses;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

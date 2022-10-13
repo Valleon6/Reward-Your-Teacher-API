@@ -7,5 +7,5 @@ import java.util.List;
 public interface TransactionService {
     List<TransactionResponse> getStudentTransactions(int offset, int pageSize);
 
-    List<TransactionResponse> getTeacherTransactions(int pffset, int pageSize);
+    List<TransactionResponse> getTeacherTransactions(int offset, int pageSize);
 }
