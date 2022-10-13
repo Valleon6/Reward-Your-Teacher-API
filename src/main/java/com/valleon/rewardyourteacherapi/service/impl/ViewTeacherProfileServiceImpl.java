@@ -16,7 +16,7 @@ public class ViewTeacherProfileServiceImpl implements ViewTeacherProfileService 
     @Override
     public ViewTeacherProfileResponse viewTeacherByName(String name) {
 
-        Teacher teacher = teacherDao.searchTeacherByName(name);
+        Teacher teacher = teacherDao.findTeacherByName(name);
 
         return ViewTeacherProfileResponse.builder()
                 .name(teacher.getName())
