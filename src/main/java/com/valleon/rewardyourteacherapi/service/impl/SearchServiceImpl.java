@@ -78,7 +78,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<TeacherSearchResponse> searchTeacherByName(String keyword) {
-        List<Teacher> teacher = teacherDao.findTeacherByNameIsContainingIgnoreCase(keyword);
+        List<Teacher> teacher = teacherDao.findTeachersByNameIsContainingIgnoreCase(keyword);
         List<TeacherSearchResponse> teacherSearchResponseList = new ArrayList<>();
         teacher.forEach(teacher1 -> {
             TeacherSearchResponse teacherSearchResponse =  responseMapper.teacherSearchResponseToTeacherMapper(teacher1);

@@ -102,7 +102,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<ViewTeacherProfileResponse> viewTeacherByName(String name) {
-        List<Teacher> teachers = teacherDao.findTeacherByName(name).orElseThrow(()-> new CustomNotFoundException("Teacher not found"));
+        List<Teacher> teachers = teacherDao.findTeachersByName(name).orElseThrow(()-> new CustomNotFoundException("Teacher not found"));
         List<ViewTeacherProfileResponse> viewTeacherProfileResponses = new ArrayList<>();
         teachers.forEach(teacher -> {
             ViewTeacherProfileResponse viewTeacherProfileResponse = requestMapper

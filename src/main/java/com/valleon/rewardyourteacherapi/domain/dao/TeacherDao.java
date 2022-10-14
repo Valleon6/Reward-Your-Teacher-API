@@ -19,11 +19,11 @@ public interface TeacherDao extends CrudDAO<Teacher, Long>{
 
     Optional<Teacher> findTeacherByPhoneNumber(String phoneNumber);
 
-    List<Teacher> findTeacherByNameIsContainingIgnoreCase(String name);
+    List<Teacher> findTeachersByNameIsContainingIgnoreCase(String name);
 
     Optional<Teacher> findTeacherByNin(String nin);
 
-    Optional<List<Teacher>> findTeacherByName(String name);
+    Optional<List<Teacher>> findTeachersByName(String name);
 
     Teacher getTeacherByNameAndPhoneNumber(String name, String phoneNumber);
 
