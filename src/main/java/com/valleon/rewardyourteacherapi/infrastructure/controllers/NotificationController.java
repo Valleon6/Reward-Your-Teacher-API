@@ -1,7 +1,7 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
-import com.valleon.rewardyourteacherapi.service.payload.NotificationService;
-import com.valleon.rewardyourteacherapi.service.payload.request.NotificationRequest;
+import com.valleon.rewardyourteacherapi.usecase.services.NotificationService;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.NotificationRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

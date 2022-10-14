@@ -1,9 +1,9 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
-import com.valleon.rewardyourteacherapi.service.payload.SearchService;
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.SchoolSearchResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.TeacherSearchResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.SearchService;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.SchoolSearchResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.TeacherSearchResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.valleon.rewardyourteacherapi.utilities;
 
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
-import com.valleon.rewardyourteacherapi.service.payload.response.TeacherSearchResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.TeacherSearchResponse;
 import org.springframework.stereotype.Service;
 
 @Service

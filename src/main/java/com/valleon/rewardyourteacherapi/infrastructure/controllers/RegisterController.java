@@ -1,11 +1,11 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
 import com.google.gson.Gson;
-import com.valleon.rewardyourteacherapi.service.payload.RegisterService;
-import com.valleon.rewardyourteacherapi.service.payload.request.StudentRegistrationRequest;
-import com.valleon.rewardyourteacherapi.service.payload.request.TeacherRegistrationRequest;
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.RegistrationResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.RegisterService;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.StudentRegistrationRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.TeacherRegistrationRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.RegistrationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

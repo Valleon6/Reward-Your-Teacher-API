@@ -1,6 +1,6 @@
 package com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers;
 
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;

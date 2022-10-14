@@ -1,11 +1,11 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
-import com.valleon.rewardyourteacherapi.service.payload.ProfileService;
-import com.valleon.rewardyourteacherapi.service.payload.request.StudentProfileRequest;
-import com.valleon.rewardyourteacherapi.service.payload.request.TeacherProfileRequest;
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.EditProfileResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.ViewTeacherProfileResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.ProfileService;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.StudentProfileRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.TeacherProfileRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.EditProfileResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ViewTeacherProfileResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -8,13 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
-import springfox.documentation.swagger2.mappers.LicenseMapper;
 
 @Configuration
 //@EnableSwagger2WebMvc
@@ -48,6 +41,14 @@ public class SwaggerConfig {
     @Value("${api.info.license.url: api.info.license.url")
     private String licenseUrl;
 
+
+    @Bean
+    public OpenAPI productApi(){
+        return new OpenAPI()
+                .info(getApiInfo());
+    }
+
+
     private Info getApiInfo(){
         Contact contact = new Contact().name(contactName).email(contactEmail).url(contactUrl);
         License license = new License().name(licenseName).url(licenseUrl);
@@ -56,16 +57,11 @@ public class SwaggerConfig {
                 .title(title)
                 .description(description)
                 .version(version)
-                .termsOfService(termOfService)
                 .contact(contact)
                 .license(license);
     }
 
-    @Bean
-    public OpenAPI productApi(){
-        return new OpenAPI()
-                .info(getApiInfo());
-    }
+
 
 
 //    private ApiInfo fetchApiInfo(){

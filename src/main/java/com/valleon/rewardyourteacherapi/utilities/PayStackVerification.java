@@ -2,7 +2,7 @@ package com.valleon.rewardyourteacherapi.utilities;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.valleon.rewardyourteacherapi.service.payload.response.VerifyTransactionResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.VerifyTransactionResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

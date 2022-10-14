@@ -1,10 +1,10 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
-import com.valleon.rewardyourteacherapi.service.payload.WalletService;
-import com.valleon.rewardyourteacherapi.service.payload.request.FundWalletRequest;
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.PaymentResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.WalletResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.WalletService;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.FundWalletRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.PaymentResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.WalletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

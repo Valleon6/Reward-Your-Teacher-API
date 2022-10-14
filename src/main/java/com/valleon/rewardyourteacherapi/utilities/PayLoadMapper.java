@@ -2,8 +2,8 @@ package com.valleon.rewardyourteacherapi.utilities;
 
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
-import com.valleon.rewardyourteacherapi.service.payload.response.EditProfileResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.RegistrationResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.EditProfileResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.RegistrationResponse;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,8 +1,8 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
-import com.valleon.rewardyourteacherapi.service.payload.TransactionService;
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
-import com.valleon.rewardyourteacherapi.service.payload.response.TransactionResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.TransactionService;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.TransactionResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

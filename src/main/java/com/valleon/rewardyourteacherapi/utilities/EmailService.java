@@ -1,6 +1,6 @@
 package com.valleon.rewardyourteacherapi.utilities;
 
-import com.valleon.rewardyourteacherapi.service.payload.request.EmailDetailsRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.EmailDetailsRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;

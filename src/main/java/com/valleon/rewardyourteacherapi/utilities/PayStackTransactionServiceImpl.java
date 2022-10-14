@@ -2,9 +2,9 @@ package com.valleon.rewardyourteacherapi.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.valleon.rewardyourteacherapi.service.payload.PaymentService;
-import com.valleon.rewardyourteacherapi.service.payload.request.PayStackTransactionRequest;
-import com.valleon.rewardyourteacherapi.service.payload.response.PayStackTransactionResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.PaymentService;
+import com.valleon.rewardyourteacherapi.usecase.payload.request.PayStackTransactionRequest;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.PayStackTransactionResponse;
 import lombok.AllArgsConstructor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

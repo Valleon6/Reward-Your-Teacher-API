@@ -3,7 +3,7 @@ package com.valleon.rewardyourteacherapi;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.valleon.rewardyourteacherapi.domain.entities.School;
-import com.valleon.rewardyourteacherapi.service.impl.SchoolServiceImpl;
+import com.valleon.rewardyourteacherapi.usecase.services.impl.SchoolServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
