@@ -24,8 +24,8 @@ public class Wallet extends AbstractEntity {
     @Column(name = "balance", nullable = false, columnDefinition = "NUMERIC(11,2) DEFAULT 0.0")
     private BigDecimal balance;
 
-    @Column(name = "totalMoneySpent", nullable = false, columnDefinition = "NUMERIC(11,2) DEFAULT 0.0")
-    private BigDecimal totalMoneySpent;
+    @Column(name = "totalMoneySent", nullable = false, columnDefinition = "NUMERIC(11,2) DEFAULT 0.0")
+    private BigDecimal totalMoneySent;
 
     @OneToOne
     @JoinColumn(name = "student_Id", referencedColumnName = "id")

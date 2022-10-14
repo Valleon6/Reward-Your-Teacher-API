@@ -106,7 +106,7 @@ public class RegisterServiceImpl implements RegisterService {
         Wallet wallet = new Wallet();
         wallet.setBalance(new BigDecimal("0.00"));
         wallet.setStudent(student);
-        wallet.setTotalMoneySpent(new BigDecimal("0.00"));
+        wallet.setTotalMoneySent(new BigDecimal("0.00"));
         walletDao.saveRecord(wallet);
 
         return response;  }
@@ -171,7 +171,7 @@ public class RegisterServiceImpl implements RegisterService {
         Wallet wallet = new Wallet();
         wallet.setBalance(new BigDecimal("0.00"));
         wallet.setTeacher(teacher);
-        wallet.setTotalMoneySpent(new BigDecimal("0.00"));
+        wallet.setTotalMoneySent(new BigDecimal("0.00"));
         walletDao.saveRecord(wallet);
 
         return response;
