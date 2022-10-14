@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
@@ -15,8 +16,14 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
     Page<Teacher> findAll(Pageable pageable);
 
+    Optional<List<Teacher>> findTeachersByNameContainingIgnoreCase(String name);
+
     Teacher getTeacherByAppUser(AppUser appUser);
 
-    Teacher findTeacherByNameContainingIgnoreCase(String name);
+    Optional<Teacher> findTeacherByPhoneNumber(String phoneNumber);
+
+    Optional<Teacher> findTeacherByNin(String nin);
+    Optional<List<Teacher>> findTeachersByName(String name);
+    Teacher getTeachersByNameContainingIgnoreCaseAndPhoneNumber(String name, String phoneNumber);
 
 }
