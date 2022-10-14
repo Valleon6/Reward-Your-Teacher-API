@@ -10,5 +10,5 @@ public interface WalletService {
     PaymentResponse fundWallet(FundWalletRequest fundWalletRequest) throws Exception;
 
 
-    WalletResponse getTeacherWalletResponse();
+    WalletResponse getTeacherWalletBalance();
 }
