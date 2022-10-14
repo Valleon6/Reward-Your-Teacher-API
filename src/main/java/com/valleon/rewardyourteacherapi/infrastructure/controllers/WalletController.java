@@ -2,11 +2,11 @@ package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
 import com.valleon.rewardyourteacherapi.service.payload.WalletService;
 import com.valleon.rewardyourteacherapi.service.payload.request.FundWalletRequest;
-
+import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
 import com.valleon.rewardyourteacherapi.service.payload.response.PaymentResponse;
 import com.valleon.rewardyourteacherapi.service.payload.response.WalletResponse;
 import lombok.AllArgsConstructor;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,18 +18,21 @@ public class WalletController {
     private final WalletService walletService;
 
     @PostMapping("/fund")
-    public ResponseEntity<PaymentResponse> fundWallet(@RequestBody FundWalletRequest amount) throws Exception {
-        return ResponseEntity.ok(walletService.fundWallet(amount));
+    public ResponseEntity<ApiResponse<PaymentResponse>> fundWallet(@RequestBody FundWalletRequest fundWalletRequest) throws Exception {
+        PaymentResponse paymentResponse = walletService.fundWallet(fundWalletRequest);
+        return new ResponseEntity<>(new ApiResponse<>("success",true,paymentResponse), HttpStatus.OK);
     }
 
     @GetMapping("/student/balance")
-    public ResponseEntity<WalletResponse> getStudentBalance(){
-        return  ResponseEntity.ok(walletService.getStudentWalletBalance());
+    public ResponseEntity<ApiResponse<WalletResponse>> getStudentBalance(){
+        WalletResponse walletResponse = walletService.getStudentWalletBalance();
+        return new ResponseEntity<>(new ApiResponse<>("success",true,walletResponse),HttpStatus.OK);
     }
 
     @GetMapping("/teacher/balance")
-    public ResponseEntity<WalletResponse> getTeacherBalance(){
-        return ResponseEntity.ok(walletService.getTeacherWalletResponse());
+    public ResponseEntity<ApiResponse<WalletResponse>> getTeacherBalance(){
+        WalletResponse walletResponse = walletService.getTeacherWalletBalance();
+        return new ResponseEntity<>(new ApiResponse<>("success",true,walletResponse),HttpStatus.OK);
     }
 
 }
