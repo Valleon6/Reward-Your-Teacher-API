@@ -4,30 +4,26 @@ import com.valleon.rewardyourteacherapi.domain.dao.*;
 import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
+import com.valleon.rewardyourteacherapi.domain.entities.enums.Role;
 import com.valleon.rewardyourteacherapi.domain.entities.enums.TransactionType;
 import com.valleon.rewardyourteacherapi.domain.entities.transact.Transaction;
 import com.valleon.rewardyourteacherapi.domain.entities.transact.Wallet;
+import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.UserDetails;
 import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.CustomNotFoundException;
 import com.valleon.rewardyourteacherapi.service.payload.PaymentService;
 import com.valleon.rewardyourteacherapi.service.payload.WalletService;
+import com.valleon.rewardyourteacherapi.service.payload.request.EmailDetailsRequest;
 import com.valleon.rewardyourteacherapi.service.payload.request.FundWalletRequest;
 import com.valleon.rewardyourteacherapi.service.payload.request.PayStackTransactionRequest;
-import com.valleon.rewardyourteacherapi.service.payload.response.ApiResponse;
 import com.valleon.rewardyourteacherapi.service.payload.response.PayStackTransactionResponse;
 import com.valleon.rewardyourteacherapi.service.payload.response.PaymentResponse;
 import com.valleon.rewardyourteacherapi.service.payload.response.WalletResponse;
+import com.valleon.rewardyourteacherapi.utilities.EmailService;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.websocket.AuthenticationException;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 
 @Service
@@ -35,16 +31,11 @@ import java.util.Optional;
 @Transactional
 public class WalletServiceImpl implements WalletService {
 
+    private final EmailService emailService;
     private final StudentDao studentDao;
-
     private final TeacherDao teacherDao;
 
     private final WalletDao walletDao;
-
-    private final ApiResponse successResponse;
-
-    private final ApiResponse walletResponse;
-
     private final PaymentService paymentService;
 
     private final TransactionDao transactionDao;
@@ -53,33 +44,30 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public WalletResponse getStudentWalletBalance() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if(!(principal instanceof UserDetails)){
-            throw  new CustomNotFoundException("user not found.");
+        String email = UserDetails.getLoggedInUserDetails();
+        AppUser appUser = appUserDao.findAppUserByEmailAndRole(email, Role.STUDENT);
+        if(appUser == null){
+            throw new CustomNotFoundException("User not found");
         }
-
-        String email = ((UserDetails)principal).getUsername();
-
-        AppUser appUser = appUserDao.findAppUserByEmail(email)
-                .orElseThrow(() -> new CustomNotFoundException("User not found"));
 
         Student student = studentDao.getStudentByAppUser(appUser);
 
-        Wallet wallet = walletDao.findWalletByStudent(student)
-                .orElseThrow(()-> new CustomNotFoundException("User not found"));
+        if(student == null){
+            throw new CustomNotFoundException("Invalid user");
+        }
+        Wallet wallet = walletDao.findWalletByStudent(student);
+        if(wallet == null){
+            throw new CustomNotFoundException("Wallet not found or phone number missing");
+        }
 
-        return  walletResponse.checked(wallet.getBalance(),wallet.getTotalMoneySpent());
+        return new WalletResponse(wallet.getBalance());
     }
 
     @Override
     public PaymentResponse fundWallet(FundWalletRequest fundWalletRequest) throws Exception {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken) {
-            throw new AuthenticationException("User not Authenticated");
-        }
-        String email = authentication.getName();
+        String email = UserDetails.getLoggedInUserDetails();
         PayStackTransactionRequest payStackTransactionRequest = PayStackTransactionRequest
                 .builder()
                 .email(email)
@@ -87,34 +75,37 @@ public class WalletServiceImpl implements WalletService {
                 .build();
 
         PayStackTransactionResponse transactionResponse = paymentService.initTransaction(payStackTransactionRequest);
+
         if (!transactionResponse.isStatus()) {
             throw new Exception("Payment not authorized");
         }
-        AppUser appUserEntity = appUserDao.findAppUserByEmail(email)
-                .orElseThrow(()->new CustomNotFoundException("Entity not found"));
-        Student student = studentDao.getStudentByAppUser(appUserEntity);
-        Optional<Wallet> wallet = walletDao.findWalletByStudent(student);
-        if (wallet.isEmpty()) {
+        AppUser appUser = appUserDao.findAppUserByEmailAndRole(email,Role.STUDENT);
+        if(appUser == null){
+            throw new CustomNotFoundException("Entity not found");
+        }
+        Student student = studentDao.getStudentByAppUser(appUser);
+        Wallet wallet = walletDao.findWalletByStudent(student);
+        if (wallet == null) {
             Wallet walletDao1 = Wallet.builder()
                     .balance(new BigDecimal(fundWalletRequest.getAmount()))
                     .student(student)
-                    .totalMoneySpent(new BigDecimal(fundWalletRequest.getAmount())).build();
+                    .totalMoneySent(new BigDecimal(fundWalletRequest.getAmount())).build();
             walletDao.saveRecord(walletDao1);
             Transaction transaction = Transaction.builder()
-                    .transactionType(TransactionType.DEBIT.name())
+                    .transactionType(TransactionType.CREDIT.name())
                     .student(student)
                     .amount(new BigDecimal(fundWalletRequest.getAmount()))
                     .description(transactionResponse.getMessage())
                     .build();
             transactionDao.saveRecord(transaction);
-            return successResponse.success("Success", LocalDateTime.now());
+            return new PaymentResponse("Success");
 
         }
-        BigDecimal result = wallet.get().getBalance().add(new BigDecimal(fundWalletRequest.getAmount()));
-        wallet.get().setBalance(result);
-        wallet.get().setStudent(student);
-        wallet.get().setTotalMoneySpent(new BigDecimal(fundWalletRequest.getAmount()));
-        walletDao.saveRecord(wallet.get());
+        BigDecimal result = wallet.getBalance().add(new BigDecimal(fundWalletRequest.getAmount()));
+        wallet.setBalance(result);
+        wallet.setStudent(student);
+        wallet.setTotalMoneySent(new BigDecimal(fundWalletRequest.getAmount()));
+        walletDao.saveRecord(wallet);
 
         Transaction transaction = Transaction
                 .builder()
@@ -124,28 +115,33 @@ public class WalletServiceImpl implements WalletService {
                 .description(transactionResponse.getMessage())
                 .build();
         transactionDao.saveRecord(transaction);
-        return successResponse.success("Success", LocalDateTime.now());
+        EmailDetailsRequest emailDetailsRequest = EmailDetailsRequest.builder()
+                .msgBody(emailService.WalletFundingEmail(student.getName(),fundWalletRequest.getAmount()))
+                .subject("Valleon6 email")
+                .recipient(appUser.getEmail())
+                .build();
+        emailService.sendMailWithAttachment(emailDetailsRequest);
+
+        return new PaymentResponse(transactionResponse.getData().getReference());
     }
 
     @Override
-    public WalletResponse getTeacherWalletResponse() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if(!(principal instanceof UserDetails)){
+    public WalletResponse getTeacherWalletBalance() {
+        String email = UserDetails.getLoggedInUserDetails();
+        AppUser appUser = appUserDao.findAppUserByEmailAndRole(email,Role.TEACHER);
+        if(appUser == null){
             throw new CustomNotFoundException("User not found");
         }
-
-        String email = ((UserDetails)principal).getUsername();
-
-        AppUser appUser = appUserDao.findAppUserByEmail(email)
-                .orElseThrow(() -> new CustomNotFoundException("User not found."));
-
         Teacher teacher = teacherDao.getTeacherByAppUser(appUser);
+        if(teacher == null){
+            throw new CustomNotFoundException("Invalid user");
+        }
 
-        Wallet wallet = walletDao.findWalletByTeacher(teacher.getId())
-                .orElseThrow(()->  new CustomNotFoundException("Wallet not found."));
 
-        return walletResponse.checked(wallet.getBalance(), wallet.getTotalMoneySpent());
+        Wallet wallet = walletDao.findWalletByTeacher(teacher)
+                .orElseThrow(()-> new CustomNotFoundException("Wallet not found or Phone number missing"));
+
+        return new WalletResponse(wallet.getBalance());
     }
 
 
