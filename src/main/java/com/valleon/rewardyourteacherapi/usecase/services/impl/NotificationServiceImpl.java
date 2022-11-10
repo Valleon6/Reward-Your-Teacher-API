@@ -89,7 +89,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public List<NotificationRequest> allNotificationsOfA_StudentById(Long studentId) {
         Student student = studentDao.findById(studentId).orElseThrow(() -> new CustomNotFoundException("invalid request"));
-        List<Notification> notificationEntity = notificationDao.findNotificationByStudent(student);
+        List<Notification> notificationEntity = notificationDao.findNotificationByStudentOrderByCreatedAtDesc(student);
 
         if (notificationEntity.isEmpty()) {
             throw new CustomNotFoundException("Notification is empty");
@@ -102,7 +102,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public List<NotificationRequest> allNotificationsOfA_TeacherById(Long teacherId) {
         Teacher teacher = teacherDao.findById(teacherId).orElseThrow(() -> new CustomNotFoundException("Invalid request"));
-        List<Notification> notificationEntity = notificationDao.findNotificationByTeacher(teacher);
+        List<Notification> notificationEntity = notificationDao.findNotificationByTeacherOrderByCreatedAtDesc(teacher);
         if (notificationEntity.isEmpty()) {
             throw new CustomNotFoundException("Notification is empty");
         }
