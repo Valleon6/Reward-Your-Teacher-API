@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class PaymentResponse {
-    private String reference;
-//    private LocalDateTime timeStamp;
+    private String authUrl;
+
 
 }

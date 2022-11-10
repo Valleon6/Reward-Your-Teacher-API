@@ -12,5 +12,6 @@ import java.math.BigDecimal;
 public class WalletResponse {
 
     private BigDecimal balance;
+    private BigDecimal totalMoneySent;
 
 }

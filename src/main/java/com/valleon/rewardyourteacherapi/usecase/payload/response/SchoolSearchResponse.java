@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SchoolSearchResponse {
+    private long id;
     private String schoolName;
 }

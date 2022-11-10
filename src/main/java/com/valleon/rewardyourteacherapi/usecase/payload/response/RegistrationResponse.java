@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistrationResponse<T> {
-//    private String message;
-//    private LocalDateTime timeStamp;
-//    private T payload;
 
     private String name;
     private String email;

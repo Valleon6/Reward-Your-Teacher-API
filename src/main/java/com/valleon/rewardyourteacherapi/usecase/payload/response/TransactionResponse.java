@@ -17,4 +17,10 @@ public class TransactionResponse {
     private String description;
     private BigDecimal amount;
     private LocalDateTime createdAt;
+    private Long studentId;
+    private String studentName;
+    private String studentEmail;
+    private String studentPhone;
+    private String studentSchool;
+    private Long transactionId;
 }
