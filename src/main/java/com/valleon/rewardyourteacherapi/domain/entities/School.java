@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Table(name = "school")
 public class School extends AbstractEntity {
 
-//    @Column(name = "school_ID")
-//    private Integer schoolId;
+
 
     @Column(name = "school_name", nullable = false, columnDefinition = "VARCHAR(250)")
     private String schoolName;

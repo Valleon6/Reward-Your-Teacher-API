@@ -27,7 +27,7 @@ private String description;
 private BigDecimal amount;
 
 @CreationTimestamp
-@Column(name = "created At", nullable = false, updatable = false)
+@Column(name = "createdAt", nullable = false, updatable = false)
 private LocalDateTime createdAt;
 
 @ManyToOne

@@ -30,10 +30,10 @@ public class Chat extends AbstractEntity {
     private Teacher teacher_id;
 
     @CreationTimestamp
-    @Column(name = "send_Date", nullable = false, updatable = false)
+    @Column(name = "send_date", nullable = false, updatable = false)
     private LocalDateTime sendDate;
 
     @CreationTimestamp
-    @Column(name = "Date Received", nullable = false, updatable = false)
-    private LocalDateTime receiveDate;
+    @Column(name = "date received", nullable = false, updatable = false)
+    private LocalDateTime receivedDate;
 }

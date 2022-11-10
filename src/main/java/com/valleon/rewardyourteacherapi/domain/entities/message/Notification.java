@@ -5,6 +5,7 @@ import com.valleon.rewardyourteacherapi.domain.entities.AbstractEntity;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
 import com.valleon.rewardyourteacherapi.domain.entities.enums.NotificationType;
+import com.valleon.rewardyourteacherapi.domain.entities.transact.Transaction;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,5 +32,10 @@ public class Notification extends AbstractEntity {
     @JsonBackReference
     @ManyToOne
     private Teacher teacher;
+
+    private boolean isAppreciated = false;
+
+    @OneToOne
+    private Transaction transaction;
 
 }

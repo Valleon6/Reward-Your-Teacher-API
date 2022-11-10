@@ -1,5 +1,6 @@
 package com.valleon.rewardyourteacherapi.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +23,13 @@ public abstract class AbstractEntity {
     private Long id;
 
     @CreationTimestamp
-    @Column(name = "Date_Created", nullable = false, updatable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @Column(name = "date_Created", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "Date_updated", nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @Column(name = "date_updated", nullable = false)
     private LocalDateTime updatedAt;
 
     public AbstractEntity(LocalDateTime createdAt){
