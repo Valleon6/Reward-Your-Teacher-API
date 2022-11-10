@@ -39,8 +39,6 @@ public class TeacherRegistrationRequest {
     @Pattern(regexp = "((^(234){1}[0–9]{10})|((^234)[0–9]{10})|((^0)(7|8|9){1}(0|1){1}[0–9]{8}))")
     private String phoneNumber;
 
-//    private MultipartFile image;
-
     @NotBlank
     private String position;
 
