@@ -49,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
         Student student = studentDao.getStudentByAppUser(appUser);
 
         Pageable pageable = PageRequest.of(offset, pageSize);
-        Page<Transaction> pageList = transactionDao.findTransactionByStudent(pageable, student);
+        Page<Transaction> pageList = transactionDao.findTransactionByStudentOrderByCreatedAtDesc(pageable, student);
         List<TransactionResponse> transactionResponses = new ArrayList<>();
         pageList.forEach(page -> {
             TransactionResponse transactionResponse1 = TransactionResponse.builder()
@@ -83,7 +83,7 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         Pageable pageable = PageRequest.of(offset,pageSize);
-        Page<Transaction> pageList = transactionDao.findTransactionByTeacher(pageable,teacher);
+        Page<Transaction> pageList = transactionDao.findTransactionByTeacherOrderByCreatedAtDesc(pageable,teacher);
         List<TransactionResponse> transactionResponses = new ArrayList<>();
         pageList.forEach(page->{
             TransactionResponse transactionResponse1 = TransactionResponse.builder()

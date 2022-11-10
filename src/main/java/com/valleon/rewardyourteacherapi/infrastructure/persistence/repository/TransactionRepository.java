@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    Page<Transaction> findTransactionByStudent(Pageable pageable, Student student);
+    Page<Transaction> findTransactionByStudentOrderByCreatedAtDesc(Pageable pageable, Student student);
 
-    Page<Transaction> findTransactionByTeacher(Pageable pageable, Teacher teacher);
+    Page<Transaction> findTransactionByTeacherOrderByCreatedAtDesc(Pageable pageable, Teacher teacher);
 
 }

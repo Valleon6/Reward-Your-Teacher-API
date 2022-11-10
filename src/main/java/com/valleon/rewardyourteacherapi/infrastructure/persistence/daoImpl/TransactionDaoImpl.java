@@ -21,12 +21,12 @@ public class TransactionDaoImpl extends CrudDaoImpl<Transaction, Long> implement
     }
 
     @Override
-    public Page<Transaction> findTransactionByStudent(Pageable pageable, Student student) {
-        return transactionRepository.findTransactionByStudent(pageable,student);
+    public Page<Transaction> findTransactionByStudentOrderByCreatedAtDesc(Pageable pageable, Student student) {
+        return transactionRepository.findTransactionByStudentOrderByCreatedAtDesc(pageable,student);
     }
 
     @Override
-    public Page<Transaction> findTransactionByTeacher(Pageable pageable, Teacher teacher) {
-        return transactionRepository.findTransactionByTeacher(pageable, teacher);
+    public Page<Transaction> findTransactionByTeacherOrderByCreatedAtDesc(Pageable pageable, Teacher teacher) {
+        return transactionRepository.findTransactionByTeacherOrderByCreatedAtDesc(pageable, teacher);
     }
 }
