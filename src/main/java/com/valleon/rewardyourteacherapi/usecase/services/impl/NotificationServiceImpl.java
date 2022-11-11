@@ -1,16 +1,16 @@
 package com.valleon.rewardyourteacherapi.usecase.services.impl;
 
-import com.valleon.rewardyourteacherapi.domain.dao.NotificationDao;
-import com.valleon.rewardyourteacherapi.domain.dao.StudentDao;
-import com.valleon.rewardyourteacherapi.domain.dao.TeacherDao;
+import com.valleon.rewardyourteacherapi.domain.dao.*;
+import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
 import com.valleon.rewardyourteacherapi.domain.entities.message.Notification;
+import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.UserDetails;
 import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.CustomNotFoundException;
-import com.valleon.rewardyourteacherapi.usecase.services.NotificationService;
 import com.valleon.rewardyourteacherapi.usecase.payload.request.NotificationRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.request.TransactionRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.response.NotificationResponse;
+import com.valleon.rewardyourteacherapi.usecase.services.NotificationService;
 import com.valleon.rewardyourteacherapi.utilities.ScheduledTasks;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +26,9 @@ public class NotificationServiceImpl implements NotificationService {
     private TeacherDao teacherDao;
 
     private ScheduledTasks scheduledTasks;
+    private AppUserDao appUserDao;
+
+    private TransactionDao transactionDao;
 
 
     @Override
@@ -88,7 +91,9 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<NotificationRequest> allNotificationsOfA_StudentById(Long studentId) {
-        Student student = studentDao.findById(studentId).orElseThrow(() -> new CustomNotFoundException("invalid request"));
+        String email = UserDetails.getLoggedInUserDetails();
+        AppUser user = appUserDao.findAppUserByEmail(email);
+        Student student = studentDao.getStudentByAppUser(user);
         List<Notification> notificationEntity = notificationDao.findNotificationByStudentOrderByCreatedAtDesc(student);
 
         if (notificationEntity.isEmpty()) {
