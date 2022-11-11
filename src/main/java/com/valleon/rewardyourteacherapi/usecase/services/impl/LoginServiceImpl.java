@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -125,32 +126,32 @@ public class LoginServiceImpl implements LoginService {
 
         @Override
         public LoginResponse loginTeacher (LoginRequest teacherLoginRequest){
-            Authentication auth = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(teacherLoginRequest
-                            .getEmail(), teacherLoginRequest.getPassword()));
 
-            if (!auth.isAuthenticated()) {
-                throw new AuthenticationFailedException("wrong email or password");
+            UserDetails userDetailsService = userService.loadUserByUsername(teacherLoginRequest.getEmail());
+            if(userDetailsService == null){
+                throw new CustomNotFoundException("Wrong email");
+            }
+
+            if(!(passwordEncoder.matches(teacherLoginRequest.getPassword(),userDetailsService.getPassword()))){
+                throw new CustomNotFoundException("Wrong password");
             }
 
             AppUser appUser = appUserDao
-                    .findAppUserByEmailAndRole(teacherLoginRequest.getEmail(), Role.TEACHER);
-            if (appUser == null) {
-                throw new CustomNotFoundException("Unauthorised");
+                    .findAppUserByEmailAndRole(teacherLoginRequest.getEmail(),Role.TEACHER);
+            if(appUser == null){
+                throw new CustomNotFoundException("User does not exist");
             }
 
-            if (!appUser.getRole().equals(Role.TEACHER)) {
-                throw new AuthenticationFailedException("Unauthorised");
-            }
-            if (!appUser.isVerified()) {
+            if(!appUser.isVerified()){
                 throw new AuthenticationFailedException("User not verified");
             }
 
+            Teacher teacher = teacherDao.getTeacherByAppUser(appUser);
             String token = "Bearer " + jwtService
-                    .generateToken(new org.springframework.security.core
-                            .userdetails.User(teacherLoginRequest.getEmail(), teacherLoginRequest.getPassword(), new ArrayList<>()));
+                    .generateToken(new org.springframework.security.core.userdetails
+                            .User(teacherLoginRequest.getEmail(), teacherLoginRequest.getPassword(), new ArrayList<>()));
+            return new LoginResponse(token,teacher.getName(),teacher.getDisplayPicture());
 
-            return new LoginResponse(token);
         }
 
         @Override
