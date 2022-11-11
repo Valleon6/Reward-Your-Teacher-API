@@ -1,7 +1,6 @@
 package com.valleon.rewardyourteacherapi.usecase.services;
 
 import com.valleon.rewardyourteacherapi.domain.entities.message.Notification;
-import com.valleon.rewardyourteacherapi.usecase.payload.request.NotificationRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.request.TransactionRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.response.NotificationResponse;
 
@@ -15,10 +14,10 @@ public interface NotificationService {
 
     Notification teacherReceivedNotification (TransactionRequest transactionRequest);
 
-    List<NotificationRequest> allNotificationsOfA_StudentById(Long studentId);
+    List<NotificationResponse> allNotificationsOfA_StudentById();
 
-    List<NotificationRequest> allNotificationsOfA_TeacherById(Long teacherId);
+    List<NotificationResponse> allNotificationsOfA_TeacherById();
 
-    NotificationResponse studentAppreciatedNotification(Long studentId, Long teacherId);
+    NotificationResponse studentAppreciatedNotification(Long transactionId);
 
 }
