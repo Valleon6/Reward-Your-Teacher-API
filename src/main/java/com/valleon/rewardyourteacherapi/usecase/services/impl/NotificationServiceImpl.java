@@ -4,13 +4,15 @@ import com.valleon.rewardyourteacherapi.domain.dao.*;
 import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
+import com.valleon.rewardyourteacherapi.domain.entities.enums.NotificationType;
 import com.valleon.rewardyourteacherapi.domain.entities.message.Notification;
+import com.valleon.rewardyourteacherapi.domain.entities.transact.Transaction;
 import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.UserDetails;
 import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.CustomNotFoundException;
-import com.valleon.rewardyourteacherapi.usecase.payload.request.NotificationRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.request.TransactionRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.response.NotificationResponse;
 import com.valleon.rewardyourteacherapi.usecase.services.NotificationService;
+import com.valleon.rewardyourteacherapi.utilities.LocalDateTimeConverter;
 import com.valleon.rewardyourteacherapi.utilities.ScheduledTasks;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -90,51 +92,50 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public List<NotificationRequest> allNotificationsOfA_StudentById(Long studentId) {
+    public List<NotificationResponse> allNotificationsOfA_StudentById() {
         String email = UserDetails.getLoggedInUserDetails();
         AppUser user = appUserDao.findAppUserByEmail(email);
         Student student = studentDao.getStudentByAppUser(user);
-        List<Notification> notificationEntity = notificationDao.findNotificationByStudentOrderByCreatedAtDesc(student);
+        List<Notification> notification = notificationDao.findNotificationByStudentOrderByCreatedAtDesc(student);
 
-        if (notificationEntity.isEmpty()) {
+        if (notification.isEmpty()) {
             throw new CustomNotFoundException("Notification is empty");
         }
-        return notificationEntity.stream()
-                .map(n -> new NotificationRequest(n.getMessage(), n.getNotificationType()))
+        return notification.stream()
+                .map(n -> new NotificationResponse(n.getMessage(), LocalDateTimeConverter.localDateTimeConverter(n.getCreatedAt())))
                 .toList();
     }
 
     @Override
-    public List<NotificationRequest> allNotificationsOfA_TeacherById(Long teacherId) {
-        Teacher teacher = teacherDao.findById(teacherId).orElseThrow(() -> new CustomNotFoundException("Invalid request"));
-        List<Notification> notificationEntity = notificationDao.findNotificationByTeacherOrderByCreatedAtDesc(teacher);
-        if (notificationEntity.isEmpty()) {
+    public List<NotificationResponse> allNotificationsOfA_TeacherById() {
+        String email = UserDetails.getLoggedInUserDetails();
+        AppUser appUser = appUserDao.findAppUserByEmail(email);
+        Teacher teacher = teacherDao.getTeacherByAppUser(appUser);
+        List<Notification> notification = notificationDao.findNotificationByTeacherOrderByCreatedAtDesc(teacher);
+        if (notification.isEmpty()) {
             throw new CustomNotFoundException("Notification is empty");
         }
-        return notificationEntity.stream()
-                .map(n -> new NotificationRequest(n.getMessage(), n.getNotificationType()))
+        return notification.stream()
+                .map(n -> new NotificationResponse(n.getMessage(), LocalDateTimeConverter.localDateTimeConverter(n.getCreatedAt())))
                 .toList();
     }
 
     @Override
-    public NotificationResponse studentAppreciatedNotification(Long studentId, Long teacherId) {
-        Teacher teacher = teacherDao.findById(teacherId).orElse(null);
+    public NotificationResponse studentAppreciatedNotification(Long transactionId) {
+        Transaction transaction = transactionDao.getRecordById(transactionId);
+        Notification notificationEntity = notificationDao.findNotificationByTransactionOrderByCreatedAtDesc(transaction);
 
-        Student student = studentDao.findById(studentId).orElse(null);
-
-        if (teacher == null) {
-            throw new CustomNotFoundException("User with Id" + teacherId + "is not valid");
+        if (notificationEntity.isAppreciated()){
+            throw new CustomNotFoundException("You have already appreciated this student");
         }
-
-        scheduledTasks.reportCurrentTime();
-        Notification notification = Notification.builder()
-                .message(teacher.getName() + "appreciated you \\uD83D\\uDC4D")
-                .student(student)
-                .teacher(teacher)
-                .build();
-        notification.setCreatedAt(LocalDateTime.now());
-        Notification notificationEntity = notificationDao.saveRecord(notification);
-
-        return new NotificationResponse(notificationEntity.getMessage());
+        notificationEntity.setAppreciated(true);
+        String grinningFace = "\uD83D\uDC4D";
+        Notification notification =new Notification();
+        notification.setStudent(transaction.getStudent());
+        notification.setNotificationType(NotificationType.APPRECIATION_NOTIFICATION);
+        notification.setMessage(notification.getTeacher().getName()+" Appreciated you "+grinningFace);
+        notificationDao.saveRecord(notification);
+        notificationDao.saveRecord(notification);
+        return new NotificationResponse("success",LocalDateTimeConverter.localDateTimeConverter(notification.getCreatedAt()));
     }
 }
