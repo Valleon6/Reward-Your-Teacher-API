@@ -20,6 +20,21 @@ public class ResponseMapper {
         if(teacher.getYearsOfTeaching() != null){
             teacherSearchResponse.setYearsOfTeaching(teacher.getYearsOfTeaching());
         }
+        if(teacher.getPosition() != null){
+            teacherSearchResponse.setPosition(teacher.getPosition().toString());
+        }
+        if(teacher.getAppUser().getEmail() != null){
+            teacherSearchResponse.setEmail(teacher.getAppUser().getEmail());
+        }
+        if(teacher.getPhoneNumber() != null){
+            teacherSearchResponse.setPhoneNumber(teacher.getPhoneNumber());
+        }
+        if(teacher.getAbout() != null){
+            teacherSearchResponse.setAbout(teacher.getAbout());
+        }
+        if(teacher.getDisplayPicture() != null){
+            teacherSearchResponse.setDisplayPicture(teacher.getDisplayPicture());
+        }
         return teacherSearchResponse;
     }
 
