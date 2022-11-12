@@ -39,6 +39,7 @@ public class SearchServiceImpl implements SearchService {
         schoolList.forEach(school -> {
             SchoolSearchResponse response =new SchoolSearchResponse();
             response.setSchoolName(school.getSchoolName());
+            response.setId(school.getId());
 
             listOfSchoolName.add(response);
         });
