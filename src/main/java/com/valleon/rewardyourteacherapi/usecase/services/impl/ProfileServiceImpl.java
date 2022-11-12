@@ -8,7 +8,9 @@ import com.valleon.rewardyourteacherapi.domain.entities.AppUser;
 import com.valleon.rewardyourteacherapi.domain.entities.School;
 import com.valleon.rewardyourteacherapi.domain.entities.Student;
 import com.valleon.rewardyourteacherapi.domain.entities.Teacher;
+import com.valleon.rewardyourteacherapi.domain.entities.enums.Position;
 import com.valleon.rewardyourteacherapi.domain.entities.enums.Role;
+import com.valleon.rewardyourteacherapi.domain.entities.enums.Status;
 import com.valleon.rewardyourteacherapi.infrastructure.configuration.security.UserDetails;
 import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.CustomNotFoundException;
 import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.EntityAlreadyExistException;
@@ -74,7 +76,7 @@ public class ProfileServiceImpl implements ProfileService {
         String email = UserDetails.getLoggedInUserDetails();
 
 
-        School school = schoolDao.findSchool(teacherProfileRequest.getSchoolTaught())
+        School school = schoolDao.findSchool(teacherProfileRequest.getSchool())
                 .orElseThrow(() -> new CustomNotFoundException("School not found"));
 
         AppUser appUser = appUserDao.findAppUserByEmailAndRole(email,Role.TEACHER);
@@ -82,7 +84,7 @@ public class ProfileServiceImpl implements ProfileService {
             throw new CustomNotFoundException("Teacher not found");
         }
         AppUser appUserEntity1 = appUserDao.findAppUserByEmail(teacherProfileRequest.getEmail());
-        if(appUserEntity1 != null){
+        if(appUserEntity1 != null && !(email.equals(teacherProfileRequest.getEmail()))){
             throw new EntityAlreadyExistException("Email already exist");
         }
         appUser.setEmail(teacherProfileRequest.getEmail());
@@ -93,8 +95,12 @@ public class ProfileServiceImpl implements ProfileService {
         teacher.setName(teacherProfileRequest.getName());
         teacher.setSchool(school);
         teacher.setYearsOfTeaching(teacherProfileRequest.getYearsOfTeaching());
-        teacher.setPhoneNumber(teacherProfileRequest.getPhone());
+        teacher.setPhoneNumber(teacherProfileRequest.getPhoneNumber());
         teacher.setNin(url);
+        teacher.setSubjectTaught(teacherProfileRequest.getSubjectTaught());
+        teacher.setAbout(teacherProfileRequest.getAbout());
+        teacher.setPosition(Position.valueOf(teacherProfileRequest.getPosition().toUpperCase()));
+        teacher.setStatus(Status.valueOf(teacherProfileRequest.getStatus().toUpperCase()));
 
         EditProfileResponse editProfileResponse = payLoadMapper.TeacherEditMapper( teacherDao.saveRecord(teacher));
         return editProfileResponse;
