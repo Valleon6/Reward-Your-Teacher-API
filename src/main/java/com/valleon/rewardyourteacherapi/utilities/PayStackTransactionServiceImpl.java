@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.tomcat.websocket.AuthenticationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,11 +25,16 @@ import java.io.InputStreamReader;
 @Transactional
 public class PayStackTransactionServiceImpl implements PaymentService {
 
+    /**
+     * PayStack secret key
+     */
+    @Value("${paystack_secret_key:paystack}")
+    private String payStackSecretKey;
     private final PayStackVerification payStackVerification;
     public PayStackTransactionResponse initTransaction(PayStackTransactionRequest request) throws Exception {
         PayStackTransactionResponse PayStackTransactionResponse;
         try {
-            // convert transaction to json then use it as a body to post json
+            // Converts object to json
             Gson gson = new Gson();
             // add payStack charges to the amount
             StringEntity postingString = new StringEntity(gson.toJson(request));
@@ -38,7 +44,7 @@ public class PayStackTransactionServiceImpl implements PaymentService {
             HttpPost post = new HttpPost("https://api.paystack.co/transaction/initialize");
             post.setEntity(postingString);
             post.addHeader("Content-type", "application/json");
-            post.addHeader("Authorization", "Bearer sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394");
+            post.addHeader("Authorization", "Bearer "+payStackSecretKey);
             StringBuilder result = new StringBuilder();
             HttpResponse response = client.execute(post);
             if (response.getStatusLine().getStatusCode() == 200) {
