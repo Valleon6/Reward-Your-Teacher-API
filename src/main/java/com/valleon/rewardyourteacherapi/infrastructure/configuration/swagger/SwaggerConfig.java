@@ -10,8 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@EnableSwagger2WebMvc
-@ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", havingValue = "true",matchIfMissing = true)
+@ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", havingValue = "true", matchIfMissing = true)
 public class SwaggerConfig {
 
     @Value("${api.info.title: Reward Your Teacher}")
@@ -32,7 +31,7 @@ public class SwaggerConfig {
     @Value("${api.info.contact.email: val.ekechukwu@gmail.com}")
     private String contactEmail;
 
-    @Value("${api.info.contact.url: github/valleon}")
+    @Value("${api.info.contact.url: github/valleon6}")
     private String contactUrl;
 
     @Value("${api.info.license.name: api.info.license.name}")
@@ -43,13 +42,13 @@ public class SwaggerConfig {
 
 
     @Bean
-    public OpenAPI productApi(){
+    public OpenAPI productApi() {
         return new OpenAPI()
                 .info(getApiInfo());
     }
 
 
-    private Info getApiInfo(){
+    private Info getApiInfo() {
         Contact contact = new Contact().name(contactName).email(contactEmail).url(contactUrl);
         License license = new License().name(licenseName).url(licenseUrl);
 
@@ -60,27 +59,4 @@ public class SwaggerConfig {
                 .contact(contact)
                 .license(license);
     }
-
-
-
-
-//    private ApiInfo fetchApiInfo(){
-//        springfox.documentation.service.Contact contact = new springfox.documentation.service.Contact(contactName,contactUrl,contactEmail);
-//        License license = new License().name(licenseName).url(licenseUrl);
-//
-////        return new ApiInfo(title, description, version, termOfService, contact, license );
-//    }
-//
-//    //Creating a Docket bean
-//    // builder which is intended to be the primary interface into the swagger-springmvc framework
-//    @Bean
-//    public Docket api() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.any())
-//                .paths(PathSelectors.any())
-//                .build()
-//                .apiInfo(fetchApiInfo());
-//
-//    }
 }
