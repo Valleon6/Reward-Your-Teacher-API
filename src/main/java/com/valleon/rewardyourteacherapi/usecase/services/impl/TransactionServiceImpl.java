@@ -91,6 +91,10 @@ public class TransactionServiceImpl implements TransactionService {
                     .amount(page.getAmount())
                     .description(page.getDescription())
                     .createdAt(page.getCreatedAt())
+                    .studentId(page.getStudent().getId())
+                    .studentName((page.getStudent().getAppUser().getEmail()))
+                    .studentEmail(page.getStudent().getSchool().getSchoolName())
+                    .studentPhone(page.getStudent().getPhoneNumber()).transactionId(page.getId())
                     .build();
             transactionResponses.add(transactionResponse1);
 
