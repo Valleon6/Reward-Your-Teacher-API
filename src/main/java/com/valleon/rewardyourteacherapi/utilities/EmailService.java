@@ -27,7 +27,7 @@ import java.util.Iterator;
 public class EmailService {
     private final JavaMailSender javaMailSender;
 
-    @Value("${spring.mail.username}"/*Valleon6@gmail.com*/)
+    @Value("${val.ekechukwu@gmail.com}")
     private String sender;
 
     public String sendSimpleMail(EmailDetailsRequest details) {
@@ -108,5 +108,11 @@ public class EmailService {
 
     public String WalletFundingEmail(String name, String amount) {
         return EmailBody.walletFundingEmailBody(name, amount);
+    }
+    public String sendFundsEmail(String teacherName,String StudentName, String amount)  {
+        return EmailBody.sendFunds(teacherName,StudentName,amount);
+    }
+    public String receiveFundsEmail(String teacherName,String StudentName, String amount) {
+        return EmailBody.ReceiveFunds(teacherName, StudentName, amount);
     }
 }
