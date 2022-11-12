@@ -27,7 +27,7 @@ import java.util.Iterator;
 public class EmailService {
     private final JavaMailSender javaMailSender;
 
-    @Value("${val.ekechukwu@gmail.com}")
+    @Value("val.ekechukwu@gmail.com")
     private String sender;
 
     public String sendSimpleMail(EmailDetailsRequest details) {
