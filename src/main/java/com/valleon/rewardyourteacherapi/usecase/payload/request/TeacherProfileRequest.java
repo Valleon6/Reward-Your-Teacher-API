@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Data
@@ -13,29 +14,32 @@ import javax.validation.constraints.Pattern;
 @Builder
 public class TeacherProfileRequest {
 
-    @Pattern(regexp = "^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)")
+    @Pattern(regexp = "^[A-Za-z|\\s]*$",message = "Invalid name")
     private String name;
-
-    @Pattern(regexp = "^(.+)@(\\S+)$", message = "Enter a valid email address")
+    @Pattern(regexp = "^[A-Za-z|\\s]*$",message = "Invalid Email")
     private String email;
 
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
             message = "Minimum eight characters, at least one letter and one number")
     private String password;
-
     @Pattern(regexp = "^[A-Za-z|\\s]*$",message = "Invalid schoolName")
-    private String schoolTaught;
+    private String school;
 
     @Pattern(regexp = "[+-]?[0-9][0-9]*")
-    private int yearsOfTeaching;
-
+    private String yearsOfTeaching;
     @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid Input")
-    private String subjectsTaught;
+    private String subjectTaught;
 
-    @Pattern(regexp = "[+-]?[0-9][0-9]*")
-    private String nin;
+    @Pattern(regexp = "((^(234){1}[0–9]{10})|((^234)[0–9]{10})|((^0)(7|8|9){1}(0|1){1}[0–9]{8}))")
+    private String phoneNumber;
 
-    @Pattern(regexp = "^(.+)@(\\S+)$", message = "Enter a valid phone number")
-    private String phone;
+    @NotBlank
+    private String position;
+
+    @NotBlank
+    private String status;
+
+    @NotBlank
+    private String about;
 
 }

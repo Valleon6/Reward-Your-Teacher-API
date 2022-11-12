@@ -35,7 +35,7 @@ public class Teacher extends AbstractEntity {
     private String displayPicture;
 
     @Column(unique = true, nullable = false, columnDefinition = "VARCHAR(250)")
-    private Integer yearsOfTeaching;
+    private String yearsOfTeaching;
 
     @ManyToOne
     @JsonBackReference
