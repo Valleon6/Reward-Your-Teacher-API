@@ -2,6 +2,7 @@ package com.valleon.rewardyourteacherapi.utilities;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.valleon.rewardyourteacherapi.infrastructure.exceptionHandlers.CustomNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,9 @@ public class CloudinaryService {
             convertedFile = new File(file);
             fileOutputStream.write(image.getBytes());
         }
+      catch (IOException e) {
+          throw new CustomNotFoundException("Error uploading image");
+      }
       return convertedFile;
     }
 
