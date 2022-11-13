@@ -1,9 +1,9 @@
 server:
     port: 8001
 spring:
-    mvc:
-        pathmatch:
-            matching-strategy: ANT_PATH_MATCHER
+#    mvc:
+#        pathmatch:
+#            matching-strategy: ANT_PATH_MATCHER
     datasource:
         password: Valleon6
         url: jdbc:postgresql://localhost:5432/rytdatabase
@@ -12,8 +12,8 @@ spring:
 #        database-platform: org.hibernate.dialect.PostgreSQL94Dialect
         hibernate:
             ddl-auto: update
-#            naming:
-#                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+            naming:
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQL95Dialect
@@ -32,10 +32,25 @@ spring:
                         client-authentication-method: post
                         client-id: 497659411913-gvk3f86dpuhhb5o1jra0hscp795lcane.apps.googleusercontent.com
                         client-secret: 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
-                        redirect-uri: https://localhost:9001/login/oauth2/code/google
+                        redirect-uri: https://localhost:8001/login/oauth2/code/google
                         scope:
                             - email
                             - profile
+    mail:
+        properties:
+            mail:
+                smtp:
+                    starttls:
+                        enable: 'true'
+                    auth: 'true'
+        host: smtp.gmail.com # I have to sign up for the service
+        username: #val.ekechukwu@gmail.com #<Login User to SMTP server>
+        password: #Valleon6 #<Login password to SMTP server>
+        port: '587'
+    springdoc:
+        swagger-ui:
+            path: /api-docs
+
 jwt:
     adminKey:
         passwordpasswordpasswordpasswordpasswordpasswordpasswordpassword
@@ -45,4 +60,8 @@ cloudinary_api_key:
     834576764474828
 cloudinary_api_secret:
     UissCDu2wcYRHKAdfJ2yuppCVyM
+paystack_secret_key:
+    sk_test_20569b941fc404567b0eb805c313ab6c617fdd3d
+
+#  sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394
 
