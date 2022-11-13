@@ -23,27 +23,27 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping(value = "/student")
-    public ResponseEntity<ApiResponse<LoginResponse>>loginStudent(@Valid @RequestBody LoginRequest loginRequest){
+    public ResponseEntity<ApiResponse<LoginResponse>> loginStudent(@Valid @RequestBody LoginRequest loginRequest){
         LoginResponse response  = loginService.loginStudent(loginRequest);
-        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response), HttpStatus.OK);
     }
 
-    @PostMapping("/teacher")
-    public ResponseEntity<ApiResponse<LoginResponse>> loginTeacher(@Valid @RequestBody LoginRequest loginRequest){
+    @PostMapping(value = "/teacher")
+    public ResponseEntity<ApiResponse<LoginResponse>> loginTeacher(@Valid @RequestBody LoginRequest loginRequest)  {
         LoginResponse response = loginService.loginTeacher(loginRequest);
-        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response), HttpStatus.OK);
     }
 
     @PostMapping("/social/student")
-    public ResponseEntity<ApiResponse<LoginResponse>>studentSocialLogin(@Valid @RequestBody SocialLoginRequest socialLoginRequest){
+    public ResponseEntity<ApiResponse<LoginResponse>> studentSocialLogin(@Valid @RequestBody SocialLoginRequest socialLoginRequest) {
         LoginResponse response = loginService.studentSocialLogin(socialLoginRequest);
-        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response),HttpStatus.OK);
     }
 
     @PostMapping("/social/teacher")
-    public ResponseEntity<ApiResponse<LoginResponse>> teacherSocialLogin(@Valid @RequestBody SocialLoginRequest socialLoginRequest){
+    public ResponseEntity<ApiResponse<Object>> teacherSocialLogin(@Valid @RequestBody SocialLoginRequest socialLoginRequest) {
         LoginResponse response = loginService.teacherSocialLogin(socialLoginRequest);
-        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new ApiResponse<>("Login Successful",true,response), HttpStatus.OK);
     }
 
 }
