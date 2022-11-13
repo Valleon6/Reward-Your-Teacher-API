@@ -1,5 +1,6 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
+import com.google.gson.Gson;
 import com.valleon.rewardyourteacherapi.usecase.services.ProfileService;
 import com.valleon.rewardyourteacherapi.usecase.payload.request.StudentProfileRequest;
 import com.valleon.rewardyourteacherapi.usecase.payload.request.TeacherProfileRequest;
@@ -21,24 +22,24 @@ import java.util.List;
 @RequestMapping("/api/v1/profile")
 public class ProfileController {
     private final ProfileService studentProfileService;
-    private final ProfileService teacherProfileService;
+    private final ProfileService profileService;
 
-    @PutMapping("/edit/student")
-    public ResponseEntity<ApiResponse<EditProfileResponse>> editStudentProfile(@Valid @RequestBody StudentProfileRequest studentProfileRequest) {
+    @PostMapping("/edit/student")
+    public ResponseEntity<ApiResponse<EditProfileResponse>> editStudentProfile(@Valid @RequestBody StudentProfileRequest studentProfileRequest){
         EditProfileResponse editProfileResponse = studentProfileService.editStudentProfile(studentProfileRequest);
-
-        return new ResponseEntity<>(new ApiResponse<>("Edited successfully", true, editProfileResponse), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>("Edited successfully",true,editProfileResponse),HttpStatus.OK);
     }
 
-    @PutMapping("/edit/teacher")
-    public ResponseEntity<ApiResponse<EditProfileResponse>>editTeacherProfile(@Valid @RequestBody TeacherProfileRequest teacherProfileRequest, MultipartFile file) throws IOException {
-        EditProfileResponse editProfileResponse =  teacherProfileService.editTeacherProfile(teacherProfileRequest,file);
+    @PostMapping("/edit/teacher")
+    public ResponseEntity<ApiResponse<EditProfileResponse>> editTeacherProfile(@Valid @RequestParam("editProfile") String teacherProfileRequest,@RequestParam("file") MultipartFile file) throws IOException {
+        TeacherProfileRequest teacherRegistrationRequest = new Gson().fromJson(teacherProfileRequest,TeacherProfileRequest.class);
+        EditProfileResponse editProfileResponse =  profileService.editTeacherProfile(teacherRegistrationRequest,file);
         return new ResponseEntity<>(new ApiResponse<>("Edited successfully",true,editProfileResponse),HttpStatus.OK);
     }
 
     @GetMapping("/view/teacher/{teacherName}")
     public ResponseEntity<ApiResponse<List<ViewTeacherProfileResponse>>> viewTeacherProfile(@PathVariable("teacherName") String name) {
-        return new ResponseEntity<>(new ApiResponse<>("success",true,teacherProfileService.viewTeacherByName(name)), HttpStatus.FOUND);
+        return new ResponseEntity<>(new ApiResponse<>("success",true,profileService.viewTeacherByName(name)), HttpStatus.FOUND);
     }
 
 }
