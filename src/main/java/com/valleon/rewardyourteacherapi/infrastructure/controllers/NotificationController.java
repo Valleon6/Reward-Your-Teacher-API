@@ -1,11 +1,11 @@
 package com.valleon.rewardyourteacherapi.infrastructure.controllers;
 
+import com.valleon.rewardyourteacherapi.usecase.payload.response.ApiResponse;
+import com.valleon.rewardyourteacherapi.usecase.payload.response.NotificationResponse;
 import com.valleon.rewardyourteacherapi.usecase.services.NotificationService;
-import com.valleon.rewardyourteacherapi.usecase.payload.request.NotificationRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,13 +21,13 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    @GetMapping("/student/{studentId}")
-    public ResponseEntity<List<NotificationRequest>> retrieveStudentNotification(@PathVariable("studentId") Long studentId){
-        return  new ResponseEntity<>(notificationService.allNotificationsOfA_StudentById(studentId), HttpStatus.FOUND);
+    @GetMapping("/student")
+    public ResponseEntity<ApiResponse<List<NotificationResponse>>> retrieveStudentNotification() {
+        return new ResponseEntity<>(new ApiResponse<>("Success",true,notificationService.allNotificationsOfA_StudentById()), HttpStatus.OK);
     }
 
-    @GetMapping("/teacher/{teacherId")
-    public ResponseEntity<List<NotificationRequest>> retrieveTeacherNotification(@PathVariable("teacherId") Long teacherId){
-        return new ResponseEntity<>(notificationService.allNotificationsOfA_TeacherById(teacherId), HttpStatus.FOUND);
+    @GetMapping("/teacher")
+    public ResponseEntity<ApiResponse<List<NotificationResponse>>> retrieveTeacherNotification() {
+        return new ResponseEntity<>(new ApiResponse<>("success",true,notificationService.allNotificationsOfA_TeacherById()), HttpStatus.OK);
     }
 }
